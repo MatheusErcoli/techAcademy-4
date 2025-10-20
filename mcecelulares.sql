@@ -89,3 +89,11 @@ CREATE TABLE Pagamento (
     data_pagamento TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_pedido) REFERENCES Pedido(id_pedido)
 );
+
+create table usuario (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50),
+    email VARCHAR(255) UNIQUE,
+    senha VARCHAR(255),
+    ativo boolean
+    );
