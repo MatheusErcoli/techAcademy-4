@@ -6,7 +6,7 @@
 
     <div class="login-body">
 
-        <form method="POST" name="formLogin" data-parsley-validate="">
+        <form method="post" name="formLogin" data-parsley-validate="">
             <div class="mb-3">
                 <label for="email" class="form-label">E-mail</label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu email" required data-parsley-required-message="Por favor, insira seu email." data-parsley-type-message="Digite um e-mail válido">
