@@ -86,9 +86,14 @@ session_start();
                             <a class="nav-link" href="usuario">Usuário</a>
                         </li>
                     </ul>
-                    <div class="d-flex" role="search">
-                        olá <?= $_SESSION["mcecelulares"]["nome"]; ?><a href="index/sair" title="Sair" class="btn btn-danger"><i class="fas fa-power-off"></i> Sair</a>
-                    </div>
+                    <div class="d-flex align-items-center" role="search">
+                        <span class="text-white fw-bold me-3">
+                             olá <?= $_SESSION["mcecelulares"]["nome"]; ?>
+                         </span>
+                                <a href="index/sair" title="Sair" class="btn btn-danger">
+                                    <i class="fas fa-power-off"></i> Sair
+                                 </a>
+                        </div>
                 </div>
             </div>
         </nav>

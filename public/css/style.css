@@ -99,35 +99,49 @@ body {
     transform: translateY(0);
 }
 
+.d-flex {
+    padding-left: 15px;
+}
+
 .navbar-custom {
-      background-color: var(--primary-purple);
-    }
+  position: fixed;               /* fixa no topo */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 
-    .navbar-custom .navbar-brand,
-    .navbar-custom .nav-link {
-      color: var(--white);
-      transition: color 0.3s ease;
-    }
+  background: rgba(102, 51, 255, 0.6); /* tom roxo com transparência */
+  backdrop-filter: blur(10px);         /* efeito vidro fosco */
+  -webkit-backdrop-filter: blur(10px); /* compatibilidade Safari */
 
-    .navbar-custom .nav-link:hover {
-      color: var(--lighter-purple);
-    }
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25); /* sombra suave */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* linha sutil */
+}
 
-    .navbar-toggler {
-      border-color: var(--light-purple);
-    }
+/* mantém o espaçamento do conteúdo abaixo da navbar */
+body {
+  padding-top: 80px;
+}
 
-    .navbar-toggler-icon {
-      filter: invert(1);
-    }
+/* links brancos com hover roxo claro */
+.navbar-custom .nav-link {
+  color: var(--white);
+  transition: color 0.3s ease;
+}
 
-    .btn-custom {
-      background-color: var(--light-purple);
-      color: var(--white);
-      border: none;
-      transition: background-color 0.3s ease;
-    }
+.navbar-custom .nav-link:hover {
+  color: var(--lighter-purple);
+}
 
-    .btn-custom:hover {
-      background-color: var(--dark-purple);
-    }
+/* botão customizado */
+.btn-custom {
+  background-color: var(--light-purple);
+  color: var(--white);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+  background-color: var(--dark-purple);
+  transform: scale(1.05);
+}
