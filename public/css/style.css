@@ -100,30 +100,30 @@ body {
 }
 
 .d-flex {
-    padding-left: 15px;
+    padding-left: 10px;
 }
 
 .navbar-custom {
-  position: fixed;               /* fixa no topo */
+  position: fixed;               
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
 
-  background: rgba(102, 51, 255, 0.6); /* tom roxo com transparência */
-  backdrop-filter: blur(10px);         /* efeito vidro fosco */
-  -webkit-backdrop-filter: blur(10px); /* compatibilidade Safari */
+  background: rgba(102, 51, 255, 0.6); 
+  backdrop-filter: blur(10px);        
+  -webkit-backdrop-filter: blur(10px); 
 
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25); /* sombra suave */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* linha sutil */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25); 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
 }
 
-/* mantém o espaçamento do conteúdo abaixo da navbar */
+
 body {
   padding-top: 80px;
 }
 
-/* links brancos com hover roxo claro */
+
 .navbar-custom .nav-link {
   color: var(--white);
   transition: color 0.3s ease;
@@ -133,7 +133,7 @@ body {
   color: var(--lighter-purple);
 }
 
-/* botão customizado */
+
 .btn-custom {
   background-color: var(--light-purple);
   color: var(--white);

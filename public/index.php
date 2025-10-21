@@ -77,7 +77,7 @@ session_start();
                             <a class="nav-link active" href="index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="categoria">Categoria</a>
+                            <a class="nav-link active" href="categoria">Categoria</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="produtos">Produtos</a>
