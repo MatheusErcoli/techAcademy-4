@@ -7,7 +7,7 @@
         }
 
         public function getUsuario($email){
-            $sql = "select id,nome,email,senha from usuarios where email = :email limit 1";
+            $sql = "select id,nome,email,senha from usuario where email = :email limit 1";
             $consulta = $this->pdo->prepare($sql);
             $consulta->bindParam(":email", $email);
             $consulta->execute();

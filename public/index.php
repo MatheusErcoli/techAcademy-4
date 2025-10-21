@@ -1,8 +1,9 @@
 <?php
-    session_start();
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +21,7 @@
     <script>
         mostrarSenha = () => {
             const campoSenha = document.getElementById("senha");
-            if(campoSenha.type === "password"){
+            if (campoSenha.type === "password") {
                 campoSenha.type = "text";
             } else {
                 campoSenha.type = "password";
@@ -28,7 +29,7 @@
         }
 
         //função para mostrar mensagem de erro
-        mensagem = function(msg, url, icone){
+        mensagem = function(msg, url, icone) {
             Swal.fire({
                 icon: icone,
                 title: msg,
@@ -39,58 +40,61 @@
         }
     </script>
 </head>
+
 <body>
     <?php
-        if(!isset($_SESSION["mcecelulares"])){
-            //não te sessao e não foi dado post
-            require "../views/index/login.php";
-        } else if ((!isset($_SESSION["mcecelulares"])) && (!$_POST)) {
-            //não tem sessao, mas foi dado post
-            $email = trim($_POST['email'] ?? NULL);
-            $senha = trim($_POST['senha'] ?? NULL);
+    if ((!isset($_SESSION["mcecelulares"])) && ($_POST)) {
+        //não tem sessao, mas foi dado post
+        $email = trim($_POST['email'] ?? NULL);
+        $senha = trim($_POST['senha'] ?? NULL);
 
-            if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-                echo "<script>mensagem('E-mail inválido!', 'index', 'error');</script>";
-            } else if(empty($senha)){
-                echo "<script>mensagem('Senha inválida!', 'index', 'error');</script>";
-            }else{
-                require "../controllers/indexController.php";
-                $acao = new indexController();
-                $acao->verificar($email, $senha);
-            }
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo "<script>mensagem('E-mail inválido!', 'index', 'error');</script>";
+        } else if (empty($senha)) {
+            echo "<script>mensagem('Senha inválida!', 'index', 'error');</script>";
         } else {
-            ?>
-            <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="index">
-            <img src="images/logo.png" alt="logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="index">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="categoria">Categoria</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="produto">Produto</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="usuario">Usuário</a>
-                </li>
-            </ul>
-            <div class="d-flex" role="ssearch">
-                olá <?=$_SESSION["mcecelulares"]["nome"];?><a href="index/sair" title="Sair" class="btn btn-danger"><i class="fas fa-power-off"></i> Sair</a>
-            </div>
-        </div>
-    </div>
-</nav>
-            <?php
+            require "../controllers/indexController.php";
+            $acao = new indexController();
+            $acao->verificar($email, $senha);
         }
+    } else if (!isset($_SESSION["mcecelulares"])) {
+        //não te sessao e não foi dado post
+        require "../views/index/login.php";
+    } else {
+    ?>
+        <nav class="navbar navbar-expand-lg navbar-custom">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold" href="index">
+                    <img src="images/logo.png" alt="logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="categoria">Categoria</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="produtos">Produtos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="usuario">Usuário</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex" role="search">
+                        olá <?= $_SESSION["mcecelulares"]["nome"]; ?><a href="index/sair" title="Sair" class="btn btn-danger"><i class="fas fa-power-off"></i> Sair</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    <?php
+    }
     ?>
 </body>
+
 </html>
