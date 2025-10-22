@@ -90,7 +90,7 @@ session_start();
                         <span class="text-white fw-bold me-3">
                              olá <?= $_SESSION["mcecelulares"]["nome"]; ?>
                          </span>
-                                <a href="index/sair" title="Sair" class="btn btn-danger">
+                                <a href="../controllers/sair.php" title="Sair" class="btn btn-danger">
                                     <i class="fas fa-power-off"></i> Sair
                                  </a>
                         </div>
