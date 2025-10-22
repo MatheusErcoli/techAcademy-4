@@ -8,6 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel de Controle - Mce Celulares</title>
+    <base href="http://<?=$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'];?>">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/sweetalert2.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -41,7 +42,8 @@ session_start();
     </script>
 </head>
 
-<body>
+<?php $bodyClass = !isset($_SESSION['mcecelulares']) ? 'login-lock' : ''; ?>
+<body class="<?= htmlspecialchars($bodyClass) ?>">
     <?php
     if ((!isset($_SESSION["mcecelulares"])) && ($_POST)) {
         //não tem sessao, mas foi dado post
@@ -74,24 +76,48 @@ session_start();
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" href="index">Home</a>
+                            <a class="nav-link" href="index">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="categoria">Categoria</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="produtos">Produtos</a>
+                            <a class="nav-link" href="produto">Produtos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="usuario">Usuário</a>
                         </li>
                     </ul>
-                    <div class="d-flex" role="search">
-                        olá <?= $_SESSION["mcecelulares"]["nome"]; ?><a href="index/sair" title="Sair" class="btn btn-danger"><i class="fas fa-power-off"></i> Sair</a>
-                    </div>
+                    <div class="d-flex align-items-center" role="search">
+                        <span class="text-white fw-bold me-3">
+                             olá <?= $_SESSION["mcecelulares"]["nome"]; ?>
+                         </span>
+                                <a href="index/sair" title="Sair" class="btn btn-danger">
+                                    <i class="fas fa-power-off"></i> Sair
+                                 </a>
+                        </div>
                 </div>
             </div>
         </nav>
+        <main>
+            <?php
+            $param = explode("/", $_GET["param"]);
+            $controller = $param[0] ?? "index";
+            $acao = $param[1] ?? "index";
+            $id = $param[2] ?? null;
+            $controller = ucfirst($controller) . "Controller";
+            if(file_exists("../controllers/{$controller}.php")){
+                require "../controllers/{$controller}.php";
+                $control = new $controller();
+                $control->$acao($id);
+            }else{
+                require "../views/index/erro.php";
+            }
+            
+            
+            
+            ?>
+        </main>
     <?php
     }
     ?>

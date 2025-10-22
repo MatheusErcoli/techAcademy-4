@@ -1,4 +1,5 @@
-<div class="login-container">
+<div class="login-page">
+    <div class="login-container">
     <div class="login-header">
         <h1>Bem-vindo</h1>
         <p>Faça login para continuar</p>
@@ -20,5 +21,6 @@
             <br>
             <button type="submit" class="btn btn-login">Entrar</button>
         </form>
+    </div>
     </div>
 </div>
