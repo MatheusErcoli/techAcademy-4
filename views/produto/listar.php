@@ -28,21 +28,26 @@
     </thead>
     <tbody>
         <?php
-        $dadosProduto = $this->listar();
+        // buscar dados diretamente do model para evitar recursão com o controller
+        $dadosProduto = $this->produto->listar();
 
         foreach($dadosProduto as $dados):
-
-        $valor = $dados->valor
-
           ?>
-           endforeach;
           <tr>
-            <td><?=$dados->id?></td>
-            <td><?= $dados->imagem ?></td>
-            <td><?= $dados->valor ?></td>
+            <td><?= isset($dados->id_produto) ? $dados->id_produto : (isset($dados->id) ? $dados->id : '') ?></td>
+            <td>
+                <?php if(!empty($dados->imagem)): ?>
+                    <img src="/public/arquivos/<?= htmlspecialchars($dados->imagem) ?>" alt="<?= htmlspecialchars($dados->nome ?? '') ?>" style="max-width:80px; max-height:60px;" />
+                <?php endif; ?>
+            </td>
+            <td><?= htmlspecialchars($dados->nome ?? '') ?></td>
+            <td><?= htmlspecialchars($dados->descricao ?? '') ?></td>
+            <td><?= htmlspecialchars($dados->valor ?? '') ?></td>
+            <td><?= (isset($dados->destaque) && $dados->destaque) ? 'Sim' : 'Não' ?></td>
+            <td><?= (isset($dados->ativo) && $dados->ativo) ? 'Sim' : 'Não' ?></td>
           </tr>
           <?php  
-       
+        endforeach;
         ?>
     </tbody>
   </table>
