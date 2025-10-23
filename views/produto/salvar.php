@@ -35,14 +35,37 @@
         exit;
     }
 
-    $imagem = $_POST['imagem'] ?? time().".jpg"; 
-    $_POST['imagem'] = $imagem;
+    $uploaded = isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK;
+    $imagem = null;
+    if($uploaded){
+        $ext = strtolower(pathinfo($_FILES['imagem']['name'], PATHINFO_EXTENSION));
+        // aceitar apenas formatos comuns (ajuste se precisar)
+        if(!in_array($ext, ['jpg','jpeg','png'])){
+            echo "<script>mensagem('Formato de imagem não suportado. Use JPG/PNG.','produto','error');</script>";
+            exit;
+        }
+        $imagem = time() . '.' . $ext;
+        $_POST['imagem'] = $imagem;
+    } else {
+        $_POST['imagem'] = $_POST['imagem'] ?? null;
+    }
 
     $msg = $this->produto->salvar($_POST);
-    if($msg == 1){
-        //gravar a imagem no servidor
-        move_uploaded_file($_FILES['arquivo']['tmp_name'], "arquivos/{$imagem}");
-        echo "<script>mensagem('Produto salvo com sucesso!','produto','ok');</script>";
-    }else{
+    if($msg){
+        if($uploaded){
+            $uploadDir = dirname(__DIR__, 2) . '/public/arquivos';
+            if(!is_dir($uploadDir)){
+                mkdir($uploadDir, 0755, true);
+            }
+            $dest = $uploadDir . '/' . $imagem;
+            if(move_uploaded_file($_FILES['imagem']['tmp_name'], $dest)){
+                echo "<script>mensagem('Produto salvo com sucesso!','produto','ok');</script>";
+            } else {
+                echo "<script>mensagem('Produto salvo, mas falha ao gravar imagem no servidor.','produto','error');</script>";
+            }
+        } else {
+            echo "<script>mensagem('Produto salvo com sucesso!','produto','ok');</script>";
+        }
+    } else {
         echo "<script>mensagem('Erro ao salvar o produto!','produto','error');</script>";
     }
