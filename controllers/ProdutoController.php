@@ -16,5 +16,12 @@
         public function index($id = null){
             $this->produto->index($id);
         }
-        
+        public function salvar(){
+            //salvar ou alterar dados
+            require "../views/produto/salvar.php";
+        }
+        public function listar(){
+            //listar produtos
+            require "../views/produto/listar.php";
+        }
     }

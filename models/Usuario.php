@@ -14,4 +14,5 @@
 
             return $consulta->fetch(PDO::FETCH_OBJ);
         }
+        
     }
