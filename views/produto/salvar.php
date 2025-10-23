@@ -34,29 +34,33 @@
         echo "<script>mensagem('Selecione se o produto é destaque','produto','error');</script>";
         exit;
     }
-
+//piazada abaixo vou deixar comentários explicando o código
+// Verifica se uma imagem foi enviada no formulário
     $uploaded = isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK;
     $imagem = null;
+    //se foi enviada
     if($uploaded){
+        //"PATHINFO_EXTENSION" pega a extensão do arquivo, "strtolower" converte para minúsculas
         $ext = strtolower(pathinfo($_FILES['imagem']['name'], PATHINFO_EXTENSION));
-        // aceitar apenas formatos comuns (ajuste se precisar)
+        // "in_array" verifica qual formato e como está com ! se não estiver no formato da errado
         if(!in_array($ext, ['jpg','jpeg','png'])){
             echo "<script>mensagem('Formato de imagem não suportado. Use JPG/PNG.','produto','error');</script>";
             exit;
         }
+        //transforma o nome do arquivo para evitar conflitos
         $imagem = time() . '.' . $ext;
         $_POST['imagem'] = $imagem;
     } else {
+        //caso nenhuma imagem tenha sido enviada não tem problema por causa do ?? NULL
         $_POST['imagem'] = $_POST['imagem'] ?? null;
     }
-
+    //salva no banco produto
     $msg = $this->produto->salvar($_POST);
     if($msg){
         if($uploaded){
+            //defini o caminho da pasta
             $uploadDir = dirname(__DIR__, 2) . '/public/arquivos';
-            if(!is_dir($uploadDir)){
-                mkdir($uploadDir, 0755, true);
-            }
+            //move o arquivo para a pasta
             $dest = $uploadDir . '/' . $imagem;
             if(move_uploaded_file($_FILES['imagem']['tmp_name'], $dest)){
                 echo "<script>mensagem('Produto salvo com sucesso!','produto','ok');</script>";
@@ -66,6 +70,7 @@
         } else {
             echo "<script>mensagem('Produto salvo com sucesso!','produto','ok');</script>";
         }
+        //caso produto não tenha sido salvado
     } else {
         echo "<script>mensagem('Erro ao salvar o produto!','produto','error');</script>";
     }
