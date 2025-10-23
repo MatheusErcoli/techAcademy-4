@@ -14,7 +14,39 @@
             </div>
         </div>
         <div class="card-body">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Imagem</th>
+        <th>Nome do produto</th>
+        <th>Descrição</th>
+        <th>Valor</th>
+        <th>Destaque</th>
+        <th>Ativo</th>
+      </tr>
+    </thead>
+    <tbody>
+        <?php
+        $dadosProduto = $this->listar();
 
-        </div>
-    </div>
+        foreach($dadosProduto as $dados):
+
+        $valor = $dados->valor
+
+          ?>
+           endforeach;
+          <tr>
+            <td><?=$dados->id?></td>
+            <td><?= $dados->imagem ?></td>
+            <td><?= $dados->valor ?></td>
+          </tr>
+          <?php  
+       
+        ?>
+    </tbody>
+  </table>
 </div>
+
+    </div>
+</div>  
