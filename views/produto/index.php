@@ -6,8 +6,7 @@
  if (!empty($id)) {
      $id = isset($dados->id_produto) ? $dados->id_produto : $id;
  }
-
- $valor = number_format($valor, 2, ',', '.');
+ 
 ?>
 
 
@@ -80,7 +79,15 @@
                     </div>
                     <div class="col-12 col-md-2">
                         <label for="valor">Valor:</label>
-                        <input type="text" name="valor" id="valor" class="form-control" required data-parsley-required-message="Digite o Valor" value="<?= isset($dados->valor) ? $dados->valor : '' ?>">
+                        <?php
+                            // formatar valor para exibição no input (usar vírgula como decimal)
+                            $valorExibicao = '';
+                            if (isset($dados->valor) && $dados->valor !== null && $dados->valor !== '') {
+                                // garantir que é numérico antes de formatar
+                                $valorExibicao = number_format((float) str_replace(',', '.', $dados->valor), 2, ',', '.');
+                            }
+                        ?>
+                        <input type="text" name="valor" id="valor" class="form-control" required data-parsley-required-message="Digite o Valor" value="<?= $valorExibicao ?>">
                     </div>
                     <div class="col-12 col-md-2">
                         <label for="destaque">Destaque:</label>
