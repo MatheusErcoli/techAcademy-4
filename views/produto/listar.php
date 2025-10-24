@@ -43,7 +43,11 @@
             </td>
             <td><?= htmlspecialchars($dados->nome ?? '') ?></td>
             <td><?= htmlspecialchars($dados->descricao ?? '') ?></td>
-            <td><?= htmlspecialchars($dados->valor ?? '') ?></td>
+            <?php
+                // formatar valor para exibição (2 casas decimais, separador decimal vírgula)
+                $valor = isset($dados->valor) && $dados->valor !== null && $dados->valor !== '' ? number_format($dados->valor, 2, ',', '.') : '';
+            ?>
+            <td><?= htmlspecialchars($valor) ?></td>
             <td><?= (isset($dados->destaque) && ($dados->destaque === 'S' || $dados->destaque == 1 || $dados->destaque)) ? 'Sim' : 'Não' ?></td>
             <td><?= (isset($dados->ativo) && ($dados->ativo === 'S' || $dados->ativo == 1 || $dados->ativo)) ? 'Sim' : 'Não' ?></td>
             <td>
