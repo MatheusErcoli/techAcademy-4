@@ -24,6 +24,7 @@
         <th>Valor</th>
         <th>Destaque</th>
         <th>Ativo</th>
+        <th>Opções</th>
       </tr>
     </thead>
     <tbody>
@@ -37,14 +38,25 @@
             <td><?= isset($dados->id_produto) ? $dados->id_produto : (isset($dados->id) ? $dados->id : '') ?></td>
             <td>
                 <?php if(!empty($dados->imagem)): ?>
-                    <img src="/public/arquivos/<?= htmlspecialchars($dados->imagem) ?>" alt="<?= htmlspecialchars($dados->nome ?? '') ?>" style="max-width:80px; max-height:60px;" />
+                    <img src="<?= htmlspecialchars($dados->imagem) ?>" alt="Imagem do Produto" style="max-width: 100px; max-height: 100px;">
                 <?php endif; ?>
             </td>
             <td><?= htmlspecialchars($dados->nome ?? '') ?></td>
             <td><?= htmlspecialchars($dados->descricao ?? '') ?></td>
             <td><?= htmlspecialchars($dados->valor ?? '') ?></td>
-            <td><?= (isset($dados->destaque) && $dados->destaque) ? 'Sim' : 'Não' ?></td>
-            <td><?= (isset($dados->ativo) && $dados->ativo) ? 'Sim' : 'Não' ?></td>
+            <td><?= (isset($dados->destaque) && ($dados->destaque === 'S' || $dados->destaque == 1 || $dados->destaque)) ? 'Sim' : 'Não' ?></td>
+            <td><?= (isset($dados->ativo) && ($dados->ativo === 'S' || $dados->ativo == 1 || $dados->ativo)) ? 'Sim' : 'Não' ?></td>
+            <td>
+                <a href="produto/index/<?= isset($dados->id_produto) ? $dados->id_produto : (isset($dados->id) ? $dados->id : '') ?>" class="btn btn-success">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="javascript:excluir(<?=$dados->id?>,'produto')">
+                    <button class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </a>
+
+            </td>
           </tr>
           <?php  
         endforeach;

@@ -58,4 +58,14 @@ class Produto
 
         return $consulta->fetchAll(PDO::FETCH_OBJ);
     }
+
+    public function excluir($id){
+        $sql = "delete from produto where id_produto = :id_produto";
+        $consulta = $this->pdo->prepare($sql);
+        $consulta->bindParam(":id_produto", $id);
+
+        return $consulta->execute();
+    }
 }
+
+

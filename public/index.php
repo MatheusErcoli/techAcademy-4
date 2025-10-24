@@ -29,6 +29,21 @@ session_start();
             }
         }
 
+        excluir = (id, tabela) => {
+            Swal.fire({
+                title: 'deseja realmente excluir?',
+                text: "Esta ação não poderá ser desfeita!",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtontext: 'excluir',
+                cancelButtontext: 'cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.href = tabela + '/excluir/' + id;
+                }
+            });
+        }
+
         //função para mostrar mensagem de erro
         mensagem = function(msg, url, icone) {
             Swal.fire({

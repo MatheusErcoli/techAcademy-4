@@ -1,5 +1,10 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
+
+
+
+
+
 <div class="container" style="margin-top: 40px;">
     <div class="card">
         <div class="card-header">
@@ -20,15 +25,18 @@
                 <div class="row">
                     <div class="col-12 col-md-1">
                         <label for="id_produto">ID:</label>
-                        <input type="text" readonly name="id_produto" id="id_produto" class="form-control">
+                        <input type="text" readonly name="id_produto" id="id_produto" class="form-control"
+                        value="<?=$id?>">
                     </div>
                     <div class="col-12 col-md-8">
                         <label for="nome">Nome do Produto:</label>
-                        <input type="text" name="nome" id="nome" class="form-control" required data-parsley-required-message="Digite o nome">
+                        <input type="text" name="nome" id="nome" class="form-control" required data-parsley-required-message="Digite o nome"
+                          value="<?= isset($dados->nome) ? $dados->nome : '' ?>">
                     </div>
                     <div class="col-12 col-md-3">
                         <label for="id_categoria">Categoria</label>
-                        <select name="id_categoria" id="id_categoria" required class="form-control" data-parsley-required-message="Selecione uma categoria">
+                        <select name="id_categoria" id="id_categoria" required class="form-control" data-parsley-required-message="Selecione uma categoria"
+                        >
                             <option value="">Selecione</option>
                             <?php
                                 $dadosCategoria = $this->listarCategoria();
