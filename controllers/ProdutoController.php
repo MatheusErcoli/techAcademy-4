@@ -24,4 +24,8 @@
             //listar produtos
             require "../views/produto/listar.php";
         }
+        public function excluir($id){
+            //excluir produto
+            require "../views/produto/excluir.php";
+        }
     }

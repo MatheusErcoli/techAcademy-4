@@ -41,8 +41,9 @@
                     <img src="<?= htmlspecialchars($dados->imagem) ?>" alt="Imagem do Produto" style="max-width: 100px; max-height: 100px;">
                 <?php endif; ?>
             </td>
-            <td><?= htmlspecialchars($dados->nome ?? '') ?></td>
-            <td><?= htmlspecialchars($dados->descricao ?? '') ?></td>
+           <td><?= htmlspecialchars($dados->nome ?? '') ?></td>
+            <td><?= htmlspecialchars(strip_tags($dados->descricao ?? '')) ?></td>
+
             <?php
                 // formatar valor para exibição (2 casas decimais, separador decimal vírgula)
                 $valor = isset($dados->valor) && $dados->valor !== null && $dados->valor !== '' ? number_format($dados->valor, 2, ',', '.') : '';
@@ -51,13 +52,11 @@
             <td><?= (isset($dados->destaque) && ($dados->destaque === 'S' || $dados->destaque == 1 || $dados->destaque)) ? 'Sim' : 'Não' ?></td>
             <td><?= (isset($dados->ativo) && ($dados->ativo === 'S' || $dados->ativo == 1 || $dados->ativo)) ? 'Sim' : 'Não' ?></td>
             <td>
-                <a href="produto/index/<?= isset($dados->id_produto) ? $dados->id_produto : (isset($dados->id) ? $dados->id : '') ?>" class="btn btn-success">
+                <a href="produto/index/<?= isset($dados->id_produto) ? $dados->id_produto : (isset($dados->id) ? $dados->id : '') ?>" class="btn btn-formulario" title="Editar">
                     <i class="fas fa-edit"></i>
                 </a>
-                <a href="javascript:excluir(<?=$dados->id?>,'produto')">
-                    <button class="btn btn-danger">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
+                <a href="javascript:excluir(<?= isset($dados->id_produto) ? $dados->id_produto : (isset($dados->id) ? $dados->id : '') ?>,'produto')" class="btn btn-formulario" title="Excluir">
+                    <i class="fas fa-trash-alt"></i>
                 </a>
 
             </td>

@@ -67,7 +67,7 @@ class Produto
     }
 
     public function excluir($id){
-        $sql = "delete from produto where id_produto = :id_produto";
+        $sql = "delete from produto where id_produto = :id_produto limit 1";
         $consulta = $this->pdo->prepare($sql);
         $consulta->bindParam(":id_produto", $id);
 
