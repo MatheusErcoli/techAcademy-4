@@ -28,44 +28,32 @@
       </tr>
     </thead>
     <tbody>
-        <?php
-        //chama metódo listar do model Produto
+      <?php
+        // Não chamar $this->listar() aqui — isso chama o controller que inclui esta view novamente
+        // e causa recursão/loop. Buscar os dados direto do model:
         $dadosProduto = $this->produto->listar();
-        //inicia o loop para exibir os produtos
-        foreach($dadosProduto as $dados):
+        foreach($dadosProduto as $dados){
           ?>
-          <tr>
-            <!-- se existir id_produto usa ele, senao usa "id", caso nenhum dos dois exista retorna vazio -->
-            <td><?= isset($dados->id_produto) ? $dados->id_produto : (isset($dados->id) ? $dados->id : '') ?></td>
-            <td>
-              <!-- verifica se existe imagem -->
+            <tr>
+              <td><?= isset($dados->id_produto) ? $dados->id_produto : (isset($dados->id) ? $dados->id : '') ?></td>
+              <td>
                 <?php if(!empty($dados->imagem)): ?>
-                    <img src="<?= htmlspecialchars($dados->imagem) ?>" alt="Imagem do Produto" style="max-width: 100px; max-height: 100px;">
+                  <img src="/public/arquivos/<?= htmlspecialchars($dados->imagem) ?>" alt="<?= htmlspecialchars($dados->nome ?? '') ?>" style="max-width:80px; max-height:60px;" />
                 <?php endif; ?>
-            </td>
-           <td><?= htmlspecialchars($dados->nome ?? '') ?></td>
-            <td><?= htmlspecialchars(strip_tags($dados->descricao ?? '')) ?></td>
-
-            <?php
-                // formatar valor para exibição (2 casas decimais, separador decimal vírgula)
-                $valor = isset($dados->valor) && $dados->valor !== null && $dados->valor !== '' ? number_format($dados->valor, 2, ',', '.') : '';
-            ?>
-            <td><?= htmlspecialchars($valor) ?></td>
-            <td><?= (isset($dados->destaque) && ($dados->destaque === 'S' || $dados->destaque == 1 || $dados->destaque)) ? 'Sim' : 'Não' ?></td>
-            <td><?= (isset($dados->ativo) && ($dados->ativo === 'S' || $dados->ativo == 1 || $dados->ativo)) ? 'Sim' : 'Não' ?></td>
-            <td>
-                <a href="produto/index/<?= isset($dados->id_produto) ? $dados->id_produto : (isset($dados->id) ? $dados->id : '') ?>" class="btn btn-formulario" title="Editar">
-                    <i class="fas fa-edit"></i>
-                </a>
-                <a href="javascript:excluir(<?= isset($dados->id_produto) ? $dados->id_produto : (isset($dados->id) ? $dados->id : '') ?>,'produto')" class="btn btn-formulario" title="Excluir">
-                    <i class="fas fa-trash-alt"></i>
-                </a>
-
-            </td>
-          </tr>
-          <?php  
-        endforeach;
-        ?>
+              </td>
+              <td><?= htmlspecialchars($dados->nome ?? '') ?></td>
+              <td><?= htmlspecialchars($dados->descricao ?? '') ?></td>
+              <td><?= htmlspecialchars($dados->valor ?? '') ?></td>
+              <td><?= (isset($dados->destaque) && $dados->destaque) ? 'Sim' : 'Não' ?></td>
+              <td><?= (isset($dados->ativo) && $dados->ativo) ? 'Sim' : 'Não' ?></td>
+              <td>
+                <a href="produto/index/<?= isset($dados->id_produto) ? $dados->id_produto : (isset($dados->id) ? $dados->id : '') ?>" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                <a href="javascript:excluir(<?= isset($dados->id_produto) ? $dados->id_produto : (isset($dados->id) ? $dados->id : '') ?>,'produto')" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+              </td>
+            </tr>
+          <?php
+        }
+      ?>
     </tbody>
   </table>
 </div>

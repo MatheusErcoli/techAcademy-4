@@ -40,4 +40,21 @@ class Categoria
 
         return $consulta->fetchAll(PDO::FETCH_OBJ);
     }
+
+    public function editar($id){
+        $sql = "select * from categoria where id_categoria = :id_categoria limit 1";
+        $consulta = $this->pdo->prepare($sql);
+        $consulta->bindParam(":id_categoria", $id);
+        $consulta->execute();
+
+        return $consulta->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function excluir($id){
+        $sql = "delete from categoria where id_categoria = :id_categoria limit 1";
+        $consulta = $this->pdo->prepare($sql);
+        $consulta->bindParam(":id_categoria", $id);
+
+        return $consulta->execute();
+    }
 }

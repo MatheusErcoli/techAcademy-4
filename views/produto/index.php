@@ -6,6 +6,35 @@
  if (!empty($id)) {
      $id = isset($dados->id_produto) ? $dados->id_produto : $id;
  }
+
+$id = $dados->id_produto ?? null;
+$nome = $dados->nome ?? null;
+$ativo = $dados->ativo ?? null;
+$descricao = $dados->descricao ?? null;
+$destaque = $dados->destaque ?? null;
+$id_categoria = $dados->id_categoria ?? null;
+$valor = $dados->valor ?? null;
+$imagem = $dados->imagem ?? null;
+
+$valor = number_format($valor, 2, ',', '.');
+
+if($destaque === 'S'){
+    $destaqueOption = 'S';
+}else if($destaque === 'N'){
+    $destaqueOption = 'N';
+}else{
+    $destaqueOption = ($destaque === null) ? '' : (string)$destaque;
+}
+
+ if ($ativo === 'S') {
+        $ativoOption = '1';
+    } else if ($ativo === 'N') {
+        $ativoOption = '0';
+    } else {
+        // pode ser já 1/0 ou null
+        $ativoOption = ($ativo === null) ? '' : (string)$ativo;
+    }
+    
  
 ?>
 
@@ -33,12 +62,12 @@
                     <div class="col-12 col-md-1">
                         <label for="id_produto">ID:</label>
                         <input type="text" readonly name="id_produto" id="id_produto" class="form-control"
-                        value="<?= isset($dados->id_produto) ? $dados->id_produto : $id ?>">
+                        value="<?=$id?>">
                     </div>
                     <div class="col-12 col-md-8">
                         <label for="nome">Nome do Produto:</label>
                         <input type="text" name="nome" id="nome" class="form-control" required data-parsley-required-message="Digite o nome"
-                          value="<?= isset($dados->nome) ? $dados->nome : '' ?>">
+                          value="<?=$nome?>">
                     </div>
                     <div class="col-12 col-md-3">
                         <label for="id_categoria">Categoria</label>
@@ -46,67 +75,59 @@
                             <option value="">Selecione</option>
                             <?php
                                 $dadosCategoria = $this->listarCategoria();
-                                foreach($dadosCategoria as $cat){
-                                    $selected = (isset($dados->id_categoria) && $dados->id_categoria == $cat->id_categoria) ? 'selected' : '';
+                                foreach($dadosCategoria as $dados){
                                     ?>
-                                        <option value="<?=$cat->id_categoria?>" <?=$selected?>>
-                                            <?=htmlspecialchars($cat->descricao)?>
+                                        <option value="<?=$dados->id_categoria?>">
+                                            <?=$dados->descricao?>
                                         </option>
                                     <?php
                                 }
                             ?>
                         </select>
+                        <script>
+                            $("#id_categoria").val("<?=$dados->id_categoria ?? ''?>");
+                        </script>
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-12 col-md-12">
                         <label for="descricao">Descrição do Produto:</label>
-                        <textarea name="descricao" id="descricao" class="form-control" required data-parsley-required-message="Digite uma descrição"><?= isset($dados->descricao) ? htmlspecialchars($dados->descricao) : '' ?></textarea>
+                        <textarea name="descricao" id="descricao" class="form-control" required data-parsley-required-message="Digite uma descrição"><?=$descricao?></textarea>
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <label for="imagem">Selecione uma foto JPG:</label>
-                        <?php if (!empty($dados->imagem)): ?>
-                            <div class="mb-2">
-                                <img src="../public/images/<?= htmlspecialchars($dados->imagem) ?>" alt="imagem" style="max-width:120px;">
-                            </div>
-                        <?php endif; ?>
                         <input type="file" name="imagem" id="imagem" class="form-control" accept=".jpg">
-                        <input type="hidden" name="imagem" value="<?= isset($dados->imagem) ? htmlspecialchars($dados->imagem) : '' ?>">
+                        <input type="hidden" name="imagem" value="<?=$imagem?>">
                     </div>
                     <div class="col-12 col-md-2">
                         <label for="valor">Valor:</label>
-                        <?php
-                            // formatar valor para exibição no input (usar vírgula como decimal)
-                            $valorExibicao = '';
-                            if (isset($dados->valor) && $dados->valor !== null && $dados->valor !== '') {
-                                // garantir que é numérico antes de formatar
-                                $valorExibicao = number_format((float) str_replace(',', '.', $dados->valor), 2, ',', '.');
-                            }
-                        ?>
-                        <input type="text" name="valor" id="valor" class="form-control" required data-parsley-required-message="Digite o Valor" value="<?= $valorExibicao ?>">
+                        <input type="text" name="valor" id="valor" class="form-control" required data-parsley-required-message="Digite o Valor" value="<?=$valor?>">
                     </div>
                     <div class="col-12 col-md-2">
                         <label for="destaque">Destaque:</label>
                         <select name="destaque" id="destaque" required class="form-control" data-parsley-required-message="Selecione">
                             <option value=""></option>
-                            <option value="S" <?= (isset($dados->destaque) && $dados->destaque == 'S') ? 'selected' : '' ?>>Sim</option>
-                            <option value="N" <?= (isset($dados->destaque) && $dados->destaque == 'N') ? 'selected' : '' ?>>Não</option>
+                            <option value="S">Sim</option>
+                            <option value="N">Não</option>
                         </select>
                         <script>
-                            $("#destaque").val("<?= isset($dados->destaque) ? $dados->destaque : '' ?>");
+                            $("#destaque").val("<?=$destaqueOption?>");
                         </script>
                     </div>
                     <div class="col-12 col-md-2">
                         <label for="ativo">Ativo:</label>
                         <select name="ativo" id="ativo" required class="form-control" data-parsley-required-message="Selecione">
                             <option value=""></option>
-                            <option value="S" <?= (isset($dados->ativo) && $dados->ativo == 'S') ? 'selected' : '' ?>>Sim</option>
-                            <option value="N" <?= (isset($dados->ativo) && $dados->ativo == 'N') ? 'selected' : '' ?>>Não</option>
+                            <option value="S">Sim</option>
+                            <option value="N">Não</option>
                         </select>
+                        <script>
+                            $("#ativo").val("<?=$ativoOption?>");
+                        </script>
                     </div>
                 </div>
                 <br>

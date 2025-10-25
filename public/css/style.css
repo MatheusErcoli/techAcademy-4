@@ -188,13 +188,14 @@ body {
     color: var(--white);
 }
 
-/* subtle hover for standard .btn elements to match site feel (no color changes) */
+.btn{
+    transition: all 0.3s ease;
+}
 .btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 16px rgba(0,0,0,0.12);
 }
 
-/* remove ugly default focus outline on buttons, keep a subtle shadow for focus */
 .btn:focus {
     outline: none;
     box-shadow: 0 8px 16px rgba(0,0,0,0.12);

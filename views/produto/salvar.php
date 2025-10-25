@@ -12,8 +12,9 @@
     $_POST['valor'] = str_replace(",", ".", $valor);
     $_POST['id_categoria'] = (int) ($id_categoria ?? 0);
     $_POST['valor'] = (float) ($_POST['valor'] ?? 0);
-    $_POST['ativo'] = ($ativo === 'S') ? 1 : 0;
-    $_POST['destaque'] = ($destaque === 'S') ? 1 : 0;
+    // aceitar 'S'/'N', '1'/'0' ou valores inteiros
+    $_POST['ativo'] = (isset($ativo) && ($ativo === 'S' || $ativo === '1' || $ativo === 1 || $ativo === true)) ? 1 : 0;
+    $_POST['destaque'] = (isset($destaque) && ($destaque === 'S' || $destaque === '1' || $destaque === 1 || $destaque === true)) ? 1 : 0;
     //validar os dados (obrigatórios)
     if(empty($nome)){
         echo "<script>mensagem('Digite o nome do produto','produto','error');</script>";

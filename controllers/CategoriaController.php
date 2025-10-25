@@ -12,7 +12,8 @@
             $this->categoria = new Categoria($pdo);
         }
 
-        public function index(){
+        public function index($id = null){
+            // quando chamado com um id (ex: categoria/index/1) o $id será passado aqui
             require "../views/categoria/index.php";
         }
 
@@ -25,6 +26,7 @@
         }
 
         public function excluir($id){
+            require "../views/categoria/excluir.php";
 
         }
     }

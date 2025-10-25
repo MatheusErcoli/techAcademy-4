@@ -7,7 +7,8 @@
     if(empty($nome)){
         echo "<script>mensagem('O nome da categoria é obrigatório!','categoria','error');</script>";
         exit;
-    }else if(empty($ativo)){
+    }else if($ativo === '' || $ativo === null){
+        // usar comparação estrita porque '0' (não ativo) em PHP é considerado empty()
         echo "<script>mensagem('O campo ativo é obrigatório!','categoria','error');</script>";
         exit;
     }
