@@ -12,15 +12,16 @@
             $this->categoria = new Categoria($pdo);
         }
 
-        public function index($id = null){
+        public function index(){
+            require "../views/categoria/index.php";
         }
 
         public function salvar(){
-            
+            require "../views/categoria/salvar.php";
         }
 
         public function listar(){
-
+            require "../views/categoria/listar.php";
         }
 
         public function excluir($id){

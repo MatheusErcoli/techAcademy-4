@@ -35,7 +35,7 @@
                                 foreach($dadosCategoria as $dados){
                                     ?>
                                         <option value="<?=$dados->id_categoria?>">
-                                            <?=$dados->descricao?>
+                                            <?=$dados->nome?>
                                         </option>
                                     <?php
                                 }

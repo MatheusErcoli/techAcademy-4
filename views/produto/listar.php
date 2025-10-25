@@ -28,18 +28,22 @@
     </thead>
     <tbody>
         <?php
-        // buscar dados diretamente do model para evitar recursão com o controller
+        //chama metódo listar do model Produto
         $dadosProduto = $this->produto->listar();
-
+        //inicia o loop para exibir os produtos
         foreach($dadosProduto as $dados):
           ?>
           <tr>
+            <!-- se existir id_produto usa ele, senao usa "id", caso nenhum dos dois exista retorna vazio -->
             <td><?= isset($dados->id_produto) ? $dados->id_produto : (isset($dados->id) ? $dados->id : '') ?></td>
             <td>
+              <!-- verifica se existe imagem -->
                 <?php if(!empty($dados->imagem)): ?>
+                  <!-- concatena caminho para exibir a imagem e o htmlspecialchars para evitar ataques XSS, caso não ache a imagem ele mostra texto alternativo-->
                     <img src="/public/arquivos/<?= htmlspecialchars($dados->imagem) ?>" alt="<?= htmlspecialchars($dados->nome ?? '') ?>" style="max-width:80px; max-height:60px;" />
                 <?php endif; ?>
             </td>
+            <!-- mostra os outros dados do produto -->
             <td><?= htmlspecialchars($dados->nome ?? '') ?></td>
             <td><?= htmlspecialchars($dados->descricao ?? '') ?></td>
             <td><?= htmlspecialchars($dados->valor ?? '') ?></td>
