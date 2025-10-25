@@ -8,11 +8,18 @@ class Produto
         $this->pdo = $pdo;
     }
 
-    public function index($id)
+    public function index($id = null)
     {
-        //form de cadastro e edição
+        // form de cadastro e edição
+        // quando um id for informado, buscar os dados e disponibilizar
+        $dados = null;
+        if (!empty($id)) {
+            $dados = $this->editar($id);
+        }
+
         require "../views/produto/index.php";
     }
+    
     public function listarCategoria()
     {
         $sql = "select * from categoria order by descricao";
@@ -58,4 +65,24 @@ class Produto
 
         return $consulta->fetchAll(PDO::FETCH_OBJ);
     }
+
+    public function excluir($id){
+        $sql = "delete from produto where id_produto = :id_produto limit 1";
+        $consulta = $this->pdo->prepare($sql);
+        $consulta->bindParam(":id_produto", $id);
+
+        return $consulta->execute();
+    }
+
+    public function editar($id)
+    {
+        $sql = "select * from produto where id_produto = :id_produto limit 1";
+        $consulta = $this->pdo->prepare($sql);
+        $consulta->bindParam(":id_produto", $id);
+        $consulta->execute();
+
+        return $consulta->fetch(PDO::FETCH_OBJ);
+    }
 }
+
+

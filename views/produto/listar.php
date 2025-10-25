@@ -24,6 +24,7 @@
         <th>Valor</th>
         <th>Destaque</th>
         <th>Ativo</th>
+        <th>Opções</th>
       </tr>
     </thead>
     <tbody>
@@ -39,16 +40,28 @@
             <td>
               <!-- verifica se existe imagem -->
                 <?php if(!empty($dados->imagem)): ?>
-                  <!-- concatena caminho para exibir a imagem e o htmlspecialchars para evitar ataques XSS, caso não ache a imagem ele mostra texto alternativo-->
-                    <img src="/public/arquivos/<?= htmlspecialchars($dados->imagem) ?>" alt="<?= htmlspecialchars($dados->nome ?? '') ?>" style="max-width:80px; max-height:60px;" />
+                    <img src="<?= htmlspecialchars($dados->imagem) ?>" alt="Imagem do Produto" style="max-width: 100px; max-height: 100px;">
                 <?php endif; ?>
             </td>
-            <!-- mostra os outros dados do produto -->
-            <td><?= htmlspecialchars($dados->nome ?? '') ?></td>
-            <td><?= htmlspecialchars($dados->descricao ?? '') ?></td>
-            <td><?= htmlspecialchars($dados->valor ?? '') ?></td>
-            <td><?= (isset($dados->destaque) && $dados->destaque) ? 'Sim' : 'Não' ?></td>
-            <td><?= (isset($dados->ativo) && $dados->ativo) ? 'Sim' : 'Não' ?></td>
+           <td><?= htmlspecialchars($dados->nome ?? '') ?></td>
+            <td><?= htmlspecialchars(strip_tags($dados->descricao ?? '')) ?></td>
+
+            <?php
+                // formatar valor para exibição (2 casas decimais, separador decimal vírgula)
+                $valor = isset($dados->valor) && $dados->valor !== null && $dados->valor !== '' ? number_format($dados->valor, 2, ',', '.') : '';
+            ?>
+            <td><?= htmlspecialchars($valor) ?></td>
+            <td><?= (isset($dados->destaque) && ($dados->destaque === 'S' || $dados->destaque == 1 || $dados->destaque)) ? 'Sim' : 'Não' ?></td>
+            <td><?= (isset($dados->ativo) && ($dados->ativo === 'S' || $dados->ativo == 1 || $dados->ativo)) ? 'Sim' : 'Não' ?></td>
+            <td>
+                <a href="produto/index/<?= isset($dados->id_produto) ? $dados->id_produto : (isset($dados->id) ? $dados->id : '') ?>" class="btn btn-formulario" title="Editar">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="javascript:excluir(<?= isset($dados->id_produto) ? $dados->id_produto : (isset($dados->id) ? $dados->id : '') ?>,'produto')" class="btn btn-formulario" title="Excluir">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+
+            </td>
           </tr>
           <?php  
         endforeach;
