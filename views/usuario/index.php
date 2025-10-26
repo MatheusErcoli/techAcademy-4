@@ -16,10 +16,10 @@ if  (!empty($id)) {
                 <h2>Cadrastro de Usuários</h2>
             </div>
             <div class="float-end">
-                <a href="produto" title="Novo" class="btn btn-formulario">
+                <a href="usuario" title="Novo" class="btn btn-formulario">
                     <i class="fas fa-file"></i> Novo Registro
                 </a>
-                <a href="produto/listar" title="Listar" class="btn btn-formulario">
+                <a href="usuario/listar" title="Listar" class="btn btn-formulario">
                     <i class="fas fa-search"></i> Listar
                 </a>
             </div>
@@ -62,12 +62,12 @@ if  (!empty($id)) {
                     <div class="col-12 col-md-4">
                         <label for="telefone">Telefone</label>
                         <input type="text" name="telefone" id="telefone" class="form-control" 
-                        required data-parsley-required-message="Digite um telefone">
+                        required data-parsley-required-message="Digite um telefone" value="<?=$telefone?>">
                     </div>
                     <div class="col-12 col-md-2">
                         <label for="ativo">Ativo:</label>
-                        <select name="ativo" id="ativo" class="form-control" required
-                        data-parsley-required-message="Selecione ativo">
+                        <select name="ativo" id="ativo" class="form-control" required 
+                        data-parsley-required-message="Selecione ativo"  >
                             <option value=""></option>
                             <option value="S">Sim</option>
                             <option value="N">Não</option>

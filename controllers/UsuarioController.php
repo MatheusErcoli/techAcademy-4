@@ -26,5 +26,6 @@ class UsuarioController {
 
     public function listar() {
 
+        require "../views/usuario/listar.php";
     }
 }
