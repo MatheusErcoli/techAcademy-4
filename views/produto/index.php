@@ -18,22 +18,22 @@ $imagem = $dados->imagem ?? null;
 
 $valor = number_format($valor, 2, ',', '.');
 
-if($destaque === 'S'){
+// Normalizar/compatibilizar valores para os selects (aceitar 'S'/'N' ou 1/0 vindo do DB)
+if ($destaque === 'S' || $destaque === '1' || $destaque === 1) {
     $destaqueOption = 'S';
-}else if($destaque === 'N'){
+} else if ($destaque === 'N' || $destaque === '0' || $destaque === 0) {
     $destaqueOption = 'N';
-}else{
+} else {
     $destaqueOption = ($destaque === null) ? '' : (string)$destaque;
 }
 
- if ($ativo === 'S') {
-        $ativoOption = '1';
-    } else if ($ativo === 'N') {
-        $ativoOption = '0';
-    } else {
-        // pode ser já 1/0 ou null
-        $ativoOption = ($ativo === null) ? '' : (string)$ativo;
-    }
+if ($ativo === 'S' || $ativo === '1' || $ativo === 1) {
+    $ativoOption = 'S';
+} else if ($ativo === 'N' || $ativo === '0' || $ativo === 0) {
+    $ativoOption = 'N';
+} else {
+    $ativoOption = ($ativo === null) ? '' : (string)$ativo;
+}
     
  
 ?>
