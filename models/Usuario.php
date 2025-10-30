@@ -35,7 +35,7 @@
                 $consulta->bindParam(":senha", $dados['senha']);
                 $consulta->bindParam(":telefone", $dados['telefone']);
                 $consulta->bindParam(":ativo", $dados['ativo']);  
-            } else if (empty($dados->senha)) {
+            } else if (empty($dados["senha"])) {
                 $sql = "update usuario set nome = :nome, email = :email, telefone = :telefone, ativo = :ativo
                         where id = :id limit 1";
                 $consulta = $this->pdo->prepare($sql);
@@ -56,6 +56,7 @@
                 $consulta->bindParam(":id", $dados['id']);
             }
 
+
             return $consulta->execute();
         }
 
@@ -67,5 +68,3 @@
             }
             
         }
-        
-    

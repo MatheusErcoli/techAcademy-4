@@ -2,6 +2,8 @@
 
     if ($_POST) {
 
+        
+
         $nome = trim($_POST['nome'] ?? NULL);
         $senha = $_POST['senha'] ?? NULL;
         $redigite = $_POST['redigite'] ?? NULL;
@@ -22,6 +24,9 @@
             $_POST['senha'] = password_hash($senha, PASSWORD_BCRYPT);
 
         }
+
+
+        
         $msg = $this->usuario->salvar($_POST);
 
         if ($msg == "1") {
