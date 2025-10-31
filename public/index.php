@@ -115,6 +115,9 @@ session_start();
                             <a class="nav-link" href="produto">Produtos</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="funcionario">Funcionário</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="cliente">Cliente</a>
                         </li>
                     </ul>
