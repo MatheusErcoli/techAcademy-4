@@ -2,6 +2,8 @@
 
     if ($_POST) {
 
+        
+
         $nome = trim($_POST['nome'] ?? NULL);
         $senha = $_POST['senha'] ?? NULL;
         $redigite = $_POST['redigite'] ?? NULL;
