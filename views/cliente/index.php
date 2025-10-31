@@ -1,8 +1,8 @@
 <?php
 if  (!empty($id)) {
-    $dados = $this->usuario->editar($id);
+    $dados = $this->cliente->editar($id);
 }
-    $id = $dados->id ?? NULL;
+    $id = $dados->id_cliente ?? NULL;
     $nome = $dados->nome ?? NULL;
     $email = $dados->email ?? NULL;
     $telefone = $dados->telefone ?? NULL;
@@ -13,34 +13,34 @@ if  (!empty($id)) {
     <div class="card">
         <div class="card-header">
             <div class="float-start">
-                <h2>Cadrastro de Usuários</h2>
+                <h2>Cadastro de Cliente</h2>
             </div>
             <div class="float-end">
-                <a href="usuario" title="Novo" class="btn btn-formulario">
+                <a href="cliente" title="Novo" class="btn btn-formulario">
                     <i class="fas fa-file"></i> Novo Registro
                 </a>
-                <a href="usuario/listar" title="Listar" class="btn btn-formulario">
+                <a href="cliente/listar" title="Listar" class="btn btn-formulario">
                     <i class="fas fa-search"></i> Listar
                 </a>
             </div>
         </div>
         <div class="card-body">
-            <form name="formUsuario" method="post" data-parsley-validate="" action="usuario/salvar">
+            <form name="formCliente" method="post" data-parsley-validate="" action="cliente/salvar">
                 <div class="row">
                     <div class="col-12 col-md-1">
-                        <label for="id">ID:</label>
-                        <input type="text" name="id" id="id" class="form-control" readonly value="<?=$id?>">
+                        <label for="id_cliente">ID:</label>
+                        <input type="text" name="id_cliente" id="id_cliente" class="form-control" readonly value="<?=$id?>">
                     </div>
                     <div class="col-12 col-md-11">
-                        <label for="nome">Nome do Usuário</label>
+                        <label for="nome">Nome do Cliente</label>
                         <input type="text" name="nome" id="nome" class="form-control" value="<?=$nome?>"
-                        required data-parsley-required-message="Preencha o nome do usuário">
+                        required data-parsley-required-message="Preencha o nome do cliente">
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-12 col-md-6">
-                        <label for="email">Digite seu email:</label>
+                        <label for="email">Digite o email:</label>
                         <input type="email" name="email" id="email" class="form-control" value="<?=$email?>"
                         required data-parsley-required-message="Preencha o email"
                         data-parsley-type-message="Digite um email válido">
@@ -69,8 +69,8 @@ if  (!empty($id)) {
                         <select name="ativo" id="ativo" class="form-control" required 
                         data-parsley-required-message="Selecione ativo"  >
                             <option value=""></option>
-                            <option value="S">Sim</option>
-                            <option value="N">Não</option>
+                            <option value="1">Sim</option>
+                            <option value="0">Não</option>
                     </select>
 
                         <script>

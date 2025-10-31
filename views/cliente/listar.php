@@ -2,13 +2,13 @@
     <div class="card">
         <div class="card-header">
             <div class="float-start">
-                <h2>Listagem de Usuários</h2>
+                <h2>Listagem de Clientes</h2>
             </div>
             <div class="float-end">
-                <a href="usuario" title="Novo" class="btn btn-formulario">
+                <a href="cliente" title="Novo" class="btn btn-formulario">
                     <i class="fas fa-file"></i> Novo Registro
                 </a>
-                <a href="usuario/listar" title="Listar" class="btn btn-formulario">
+                <a href="cliente/listar" title="Listar" class="btn btn-formulario">
                     <i class="fas fa-search"></i> Listar
                 </a>
             </div>
@@ -20,21 +20,23 @@
                         <th>ID</th>
                         <th>Nome</th>
                         <th>Telefone</th>
+                        <th>Ativo</th>
                         <th>Opções</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                        $dadosUsuarios = $this->usuario->listar();
-                        foreach($dadosUsuarios as $usuario){
+                        $dadosClientes = $this->cliente->listar();
+                        foreach($dadosClientes as $cliente){
                             ?>
                                 <tr>
-                                    <td><?=$usuario->id?></td>
-                                    <td><?=$usuario->nome?></td>
-                                    <td><?=$usuario->telefone?></td>
+                                    <td><?=$cliente->id?></td>
+                                    <td><?=htmlspecialchars($cliente->nome)?></td>
+                                    <td><?=htmlspecialchars($cliente->telefone ?? '')?></td>
+                                    <td><?= (isset($cliente->ativo) && $cliente->ativo) ? 'Sim' : 'Não' ?></td>
                                     <td>
-                                        <a href="usuario/index/<?=$usuario->id?>" class="btn btn-success">
-                                            <i class="fas fa-edit"></i> 
+                                        <a href="cliente/index/<?=$cliente->id?>" class="btn btn-success">
+                                            <i class="fas fa-edit"></i>
                                         </a>
                                     </td>
                                 </tr>
