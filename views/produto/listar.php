@@ -38,7 +38,8 @@
               <td><?= isset($dados->id_produto) ? $dados->id_produto : (isset($dados->id) ? $dados->id : '') ?></td>
               <td>
                 <?php if(!empty($dados->imagem)): ?>
-                  <img src="/public/arquivos/<?= htmlspecialchars($dados->imagem) ?>" alt="<?= htmlspecialchars($dados->nome ?? '') ?>" style="max-width:80px; max-height:60px;" />
+                  <!-- usar caminho relativo para funcionar com <base> definido em public/index.php -->
+                  <img src="arquivos/<?= htmlspecialchars($dados->imagem) ?>" alt="<?= htmlspecialchars($dados->nome ?? '') ?>" style="max-width:80px; max-height:60px;" />
                 <?php endif; ?>
               </td>
               <td><?= htmlspecialchars($dados->nome ?? '') ?></td>
