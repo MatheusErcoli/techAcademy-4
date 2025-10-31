@@ -31,9 +31,15 @@ class Produto
 
     public function salvar($dados)
     {
+        // garantir compatibilidade entre 'quantidade' (form) e 'estoque' (db/antigos usos)
+        if (isset($dados['quantidade'])) {
+            $dados['estoque'] = (int)$dados['quantidade'];
+        } else {
+            $dados['estoque'] = isset($dados['estoque']) ? (int)$dados['estoque'] : 0;
+        }
         //salvar ou alterar dados
         if (empty($dados['id_produto'])) {
-            $sql = "insert into produto (id_produto,nome,id_categoria,descricao,valor,ativo,destaque,imagem) values (NULL, :nome,:id_categoria,:descricao,:valor,:ativo,:destaque,:imagem)";
+            $sql = "insert into produto (id_produto,nome,id_categoria,descricao,valor,ativo,destaque,imagem,estoque) values (NULL, :nome,:id_categoria,:descricao,:valor,:ativo,:destaque,:imagem,:estoque)";
             $consulta = $this->pdo->prepare($sql);
             $consulta->bindParam(":nome", $dados['nome']);
             $consulta->bindParam(":id_categoria", $dados['id_categoria']);
@@ -42,8 +48,9 @@ class Produto
             $consulta->bindParam(":ativo", $dados['ativo']);
             $consulta->bindParam(":destaque", $dados['destaque']);
             $consulta->bindParam(":imagem", $dados['imagem']);
+            $consulta->bindValue(":estoque", (int)$dados['estoque'], PDO::PARAM_INT);
         } else {
-            $sql = "update produto set nome = :nome, id_categoria = :id_categoria, descricao = :descricao,valor = :valor, ativo = :ativo, destaque = :destaque, imagem = :imagem where id_produto = :id_produto";
+            $sql = "update produto set nome = :nome, id_categoria = :id_categoria, descricao = :descricao,valor = :valor, ativo = :ativo, destaque = :destaque, imagem = :imagem, estoque = :estoque where id_produto = :id_produto";
             $consulta = $this->pdo->prepare($sql);
             $consulta->bindParam(":nome", $dados['nome']);
             $consulta->bindParam(":id_categoria", $dados['id_categoria']);
@@ -52,6 +59,7 @@ class Produto
             $consulta->bindParam(":ativo", $dados['ativo']);
             $consulta->bindParam(":destaque", $dados['destaque']);
             $consulta->bindParam(":imagem", $dados['imagem']);
+            $consulta->bindValue(":estoque", (int)$dados['estoque'], PDO::PARAM_INT);
             $consulta->bindParam(":id_produto", $dados['id_produto']);
         }
 
@@ -59,7 +67,7 @@ class Produto
     }
 
     public function listar(){
-        $sql = "select * from produto order by nome";
+        $sql = "select * from produto order by id_produto";
         $consulta = $this->pdo->prepare($sql);
         $consulta->execute();
 

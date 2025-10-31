@@ -98,7 +98,7 @@ if ($ativo === 'S' || $ativo === '1' || $ativo === 1) {
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-md-4">
                         <label for="imagem">Selecione uma foto JPG:</label>
                         <input type="file" name="imagem" id="imagem" class="form-control" accept=".jpg">
                         <input type="hidden" name="imagem" value="<?=$imagem?>">
@@ -106,6 +106,10 @@ if ($ativo === 'S' || $ativo === '1' || $ativo === 1) {
                     <div class="col-12 col-md-2">
                         <label for="valor">Valor:</label>
                         <input type="text" name="valor" id="valor" class="form-control" required data-parsley-required-message="Digite o Valor" value="<?=$valor?>">
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <label for="quantidade">Estoque:</label>
+                        <input type="number" min="0" name="quantidade" id="quantidade" class="form-control" value="<?=$dados->quantidade ?? $dados->quantidade ?? 0?>">
                     </div>
                     <div class="col-12 col-md-2">
                         <label for="destaque">Destaque:</label>

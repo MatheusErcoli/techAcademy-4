@@ -22,6 +22,7 @@
         <th>Nome do produto</th>
         <th>Descrição</th>
         <th>Valor</th>
+        <th>Estoque</th>
         <th>Destaque</th>
         <th>Ativo</th>
         <th>Opções</th>
@@ -45,6 +46,7 @@
               <td><?= htmlspecialchars($dados->nome ?? '') ?></td>
               <td><?= htmlspecialchars($dados->descricao ?? '') ?></td>
               <td><?= htmlspecialchars($dados->valor ?? '') ?></td>
+              <td><?= htmlspecialchars((string)(($dados->quantidade ?? $dados->estoque) ?? 0)) ?></td>
               <td><?= (isset($dados->destaque) && $dados->destaque) ? 'Sim' : 'Não' ?></td>
               <td><?= (isset($dados->ativo) && $dados->ativo) ? 'Sim' : 'Não' ?></td>
               <td>
