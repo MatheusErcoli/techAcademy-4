@@ -9,30 +9,34 @@
     $db = new Conexao();
     $pdo = $db->conectar();
 
-    if (!empty($categoria)) {
-        //todos os produtos de uma categoria
-        $sql = "select * from produto where ativo = 'S' AND categoria_id = :categoria order by nome";
-        $consulta = $pdo->prepare($sql);
-        $consulta->bindParam(":categoria", $categoria);
-        $consulta->execute();
+    try {
+        if (!empty($categoria)) {
+            // todos os produtos de uma categoria
+            $sql = "select * from produto where ativo IN ('S','1',1) AND id_categoria = :categoria order by nome";
+            $consulta = $pdo->prepare($sql);
+            $consulta->bindParam(":categoria", $categoria);
+            $consulta->execute();
 
-        $dadosProduto = $consulta->fetchAll(PDO::FETCH_ASSOC);
-    } else if (!empty($id)) {
-        //um determinado produto
-        $sql = "select * from produto where = 'S' AND id = :id limit 1";
-        $consulta = $pdo->prepare($sql);
-        $consulta->bindParam(":id", $id);
-        $consulta->execute();
+            $dadosProduto = $consulta->fetchAll(PDO::FETCH_ASSOC);
+        } else if (!empty($id)) {
+            // um determinado produto
+            $sql = "select * from produto where ativo IN ('S','1',1) AND id_produto = :id limit 1";
+            $consulta = $pdo->prepare($sql);
+            $consulta->bindParam(":id", $id);
+            $consulta->execute();
 
-        $dadosProduto = $consulta->fetch(PDO::FETCH_ASSOC);
+            $dadosProduto = $consulta->fetch(PDO::FETCH_ASSOC);
+        } else {
+            // todos os produtos
+            $sql = "select * from produto where ativo IN ('S','1',1) order by nome";
+            $consulta = $pdo->prepare($sql);
+            $consulta->execute();
 
-    } else {
-        //todos os produtos
-        $sql = "select * from produto where ativo = 'S' order by nome";
-        $consulta = $pdo->prepare($sql);
-        $consulta->execute();
+            $dadosProduto = $consulta->fetchAll(PDO::FETCH_ASSOC);
+        }
 
-        $dadosProduto = $consulta->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($dadosProduto);
+    } catch (Exception $e) {
+        http_response_code(500);
+        echo json_encode(['error' => $e->getMessage()]);
     }
-
-    echo json_encode($dadosProduto);
