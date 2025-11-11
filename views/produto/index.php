@@ -2,10 +2,10 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
 
 <?php
- // O model agora fornece a variável $dados quando um $id é passado a Produto::index($id)
- if (!empty($id)) {
-     $id = isset($dados->id_produto) ? $dados->id_produto : $id;
- }
+// O model agora fornece a variável $dados quando um $id é passado a Produto::index($id)
+if (!empty($id)) {
+    $id = isset($dados->id_produto) ? $dados->id_produto : $id;
+}
 
 $id = $dados->id_produto ?? null;
 $nome = $dados->nome ?? null;
@@ -14,6 +14,7 @@ $descricao = $dados->descricao ?? null;
 $destaque = $dados->destaque ?? null;
 $id_categoria = $dados->id_categoria ?? null;
 $valor = $dados->valor ?? null;
+$estoque = $dados->estoque ?? 0;
 $imagem = $dados->imagem ?? null;
 
 $valor = number_format($valor, 2, ',', '.');
@@ -34,12 +35,7 @@ if ($ativo === 'S' || $ativo === '1' || $ativo === 1) {
 } else {
     $ativoOption = ($ativo === null) ? '' : (string)$ativo;
 }
-    
- 
 ?>
-
-
-
 
 <div class="container" style="margin-top: 40px;">
     <div class="card">
@@ -75,17 +71,17 @@ if ($ativo === 'S' || $ativo === '1' || $ativo === 1) {
                             <option value="">Selecione</option>
                             <?php
                                 $dadosCategoria = $this->listarCategoria();
-                                foreach($dadosCategoria as $dados){
+                                foreach($dadosCategoria as $cat){
                                     ?>
-                                        <option value="<?=$dados->id_categoria?>">
-                                            <?=$dados->descricao?>
+                                        <option value="<?=$cat->id_categoria?>">
+                                            <?=$cat->descricao?>
                                         </option>
                                     <?php
                                 }
                             ?>
                         </select>
                         <script>
-                            $("#id_categoria").val("<?=$dados->id_categoria ?? ''?>");
+                            $("#id_categoria").val("<?=$id_categoria ?? ''?>");
                         </script>
                     </div>
                 </div>
@@ -100,8 +96,8 @@ if ($ativo === 'S' || $ativo === '1' || $ativo === 1) {
                 <div class="row">
                     <div class="col-12 col-md-4">
                         <label for="imagem">Selecione uma foto JPG:</label>
-                        <input type="file" name="imagem" id="imagem" class="form-control" accept=".jpg">
-                        <input type="hidden" name="imagem" value="<?=$imagem?>">
+                        <input type="file" name="imagem" id="imagem" class="form-control" accept=".jpg,.jpeg,.png">
+                        <input type="hidden" name="imagem_atual" value="<?=$imagem?>">
                     </div>
                     <div class="col-12 col-md-2">
                         <label for="valor">Valor:</label>
@@ -109,7 +105,7 @@ if ($ativo === 'S' || $ativo === '1' || $ativo === 1) {
                     </div>
                     <div class="col-12 col-md-2">
                         <label for="quantidade">Estoque:</label>
-                        <input type="number" min="0" name="quantidade" id="quantidade" class="form-control" value="<?=$dados->quantidade ?? $dados->quantidade ?? 0?>">
+                        <input type="number" min="0" name="quantidade" id="quantidade" class="form-control" value="<?=$estoque?>">
                     </div>
                     <div class="col-12 col-md-2">
                         <label for="destaque">Destaque:</label>
@@ -142,6 +138,7 @@ if ($ativo === 'S' || $ativo === '1' || $ativo === 1) {
         </div>
     </div>
 </div>
+
 <script>
     $(document).ready(function() {
         $('#descricao').summernote({
@@ -149,6 +146,7 @@ if ($ativo === 'S' || $ativo === '1' || $ativo === 1) {
         });
     });
 </script>
+
 <script>
     $(function() {
         $('#valor').maskMoney({
