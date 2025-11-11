@@ -58,30 +58,30 @@ if ($ativo === 'S' || $ativo === '1' || $ativo === 1) {
                     <div class="col-12 col-md-1">
                         <label for="id_produto">ID:</label>
                         <input type="text" readonly name="id_produto" id="id_produto" class="form-control"
-                        value="<?=$id?>">
+                            value="<?= $id ?>">
                     </div>
                     <div class="col-12 col-md-8">
                         <label for="nome">Nome do Produto:</label>
                         <input type="text" name="nome" id="nome" class="form-control" required data-parsley-required-message="Digite o nome"
-                          value="<?=$nome?>">
+                            value="<?= $nome ?>">
                     </div>
                     <div class="col-12 col-md-3">
                         <label for="id_categoria">Categoria</label>
                         <select name="id_categoria" id="id_categoria" required class="form-control" data-parsley-required-message="Selecione uma categoria">
                             <option value="">Selecione</option>
                             <?php
-                                $dadosCategoria = $this->listarCategoria();
-                                foreach($dadosCategoria as $cat){
-                                    ?>
-                                        <option value="<?=$cat->id_categoria?>">
-                                            <?=$cat->descricao?>
-                                        </option>
-                                    <?php
-                                }
+                            $dadosCategoria = $this->listarCategoria();
+                            foreach ($dadosCategoria as $cat) {
+                            ?>
+                                <option value="<?= $cat->id_categoria ?>">
+                                    <?= $cat->descricao ?>
+                                </option>
+                            <?php
+                            }
                             ?>
                         </select>
                         <script>
-                            $("#id_categoria").val("<?=$id_categoria ?? ''?>");
+                            $("#id_categoria").val("<?= $id_categoria ?? '' ?>");
                         </script>
                     </div>
                 </div>
@@ -89,7 +89,7 @@ if ($ativo === 'S' || $ativo === '1' || $ativo === 1) {
                 <div class="row">
                     <div class="col-12 col-md-12">
                         <label for="descricao">Descrição do Produto:</label>
-                        <textarea name="descricao" id="descricao" class="form-control" required data-parsley-required-message="Digite uma descrição"><?=$descricao?></textarea>
+                        <textarea name="descricao" id="descricao" class="form-control" required data-parsley-required-message="Digite uma descrição"><?= $descricao ?></textarea>
                     </div>
                 </div>
                 <br>
@@ -97,15 +97,15 @@ if ($ativo === 'S' || $ativo === '1' || $ativo === 1) {
                     <div class="col-12 col-md-4">
                         <label for="imagem">Selecione uma foto JPG:</label>
                         <input type="file" name="imagem" id="imagem" class="form-control" accept=".jpg,.jpeg,.png">
-                        <input type="hidden" name="imagem_atual" value="<?=$imagem?>">
+                        <input type="hidden" name="imagem_atual" value="<?= $imagem ?>">
                     </div>
                     <div class="col-12 col-md-2">
                         <label for="valor">Valor:</label>
-                        <input type="text" name="valor" id="valor" class="form-control" required data-parsley-required-message="Digite o Valor" value="<?=$valor?>">
+                        <input type="text" name="valor" id="valor" class="form-control" required data-parsley-required-message="Digite o Valor" value="<?= $valor ?>">
                     </div>
                     <div class="col-12 col-md-2">
                         <label for="quantidade">Estoque:</label>
-                        <input type="number" min="0" name="quantidade" id="quantidade" class="form-control" value="<?=$estoque?>">
+                        <input type="number" min="0" name="quantidade" id="quantidade" class="form-control" value="<?= $estoque ?>">
                     </div>
                     <div class="col-12 col-md-2">
                         <label for="destaque">Destaque:</label>
@@ -115,7 +115,7 @@ if ($ativo === 'S' || $ativo === '1' || $ativo === 1) {
                             <option value="N">Não</option>
                         </select>
                         <script>
-                            $("#destaque").val("<?=$destaqueOption?>");
+                            $("#destaque").val("<?= $destaqueOption ?>");
                         </script>
                     </div>
                     <div class="col-12 col-md-2">
@@ -126,7 +126,7 @@ if ($ativo === 'S' || $ativo === '1' || $ativo === 1) {
                             <option value="N">Não</option>
                         </select>
                         <script>
-                            $("#ativo").val("<?=$ativoOption?>");
+                            $("#ativo").val("<?= $ativoOption ?>");
                         </script>
                     </div>
                 </div>

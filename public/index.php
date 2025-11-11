@@ -8,7 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel de Controle - Mce Celulares</title>
-    <base href="http://<?=$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'];?>">
+    <base href="http://<?= $_SERVER['SERVER_NAME'] . $_SERVER['SCRIPT_NAME']; ?>">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/sweetalert2.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -73,6 +73,7 @@ session_start();
 </head>
 
 <?php $bodyClass = !isset($_SESSION['mcecelulares']) ? 'login-lock' : ''; ?>
+
 <body class="<?= htmlspecialchars($bodyClass) ?>">
     <?php
     if ((!isset($_SESSION["mcecelulares"])) && ($_POST)) {
@@ -123,12 +124,16 @@ session_start();
                     </ul>
                     <div class="d-flex align-items-center" role="search">
                         <span class="text-white fw-bold me-3">
-                             olá <?= $_SESSION["mcecelulares"]["nome"]; ?>
-                         </span>
-                                <a href="index/sair" title="Sair" class="btn btn-danger">
-                                    <i class="fas fa-power-off"></i> Sair
-                                 </a>
-                        </div>
+                            olá <?= $_SESSION["mcecelulares"]["nome"]; ?>
+                        </span>
+                        <a href="../views/dashboard/index.php" title="Dashboard" class="btn btn-success me-3">
+                            <i class="fa fa-dashboard"></i> Dashboard
+                        </a>
+
+                        <a href="index/sair" title="Sair" class="btn btn-danger">
+                            <i class="fas fa-power-off"></i> Sair
+                        </a>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -139,16 +144,16 @@ session_start();
             $acao = $param[1] ?? "index";
             $id = $param[2] ?? null;
             $controller = ucfirst($controller) . "Controller";
-            if(file_exists("../controllers/{$controller}.php")){
+            if (file_exists("../controllers/{$controller}.php")) {
                 require "../controllers/{$controller}.php";
                 $control = new $controller();
                 $control->$acao($id);
-            }else{
+            } else {
                 require "../views/index/erro.php";
             }
-            
-            
-            
+
+
+
             ?>
         </main>
     <?php

@@ -63,7 +63,7 @@ class Produto
         $consulta->bindParam(":destaque", $dados['destaque']);
         $consulta->bindParam(":imagem", $dados['imagem']);
         $consulta->bindParam(":estoque", $dados['estoque'], PDO::PARAM_INT);
-
+        
         if (!empty($dados['id_produto'])) {
             $consulta->bindParam(":id_produto", $dados['id_produto']);
         }

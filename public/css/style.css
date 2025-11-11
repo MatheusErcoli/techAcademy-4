@@ -203,3 +203,135 @@ body {
     outline: none;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
 }
+/* ====== ESTILO GERAL ====== */
+body {
+    margin: 0;
+    background: linear-gradient(135deg, #7f32ff, #a359ff);
+    font-family: "Poppins", sans-serif;
+    color: #fff;
+}
+
+/* ====== SIDEBAR ====== */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: #5d17e5;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+}
+
+.sidebar img {
+    width: 120px;
+    margin-bottom: 10px;
+}
+
+.sidebar h4 {
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    width: 90%;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+    background-color: #7f32ff;
+    transform: scale(1.02);
+}
+
+/* ====== BOTÃO SAIR ====== */
+.logout-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-top: auto;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #b82c3a;
+    transform: scale(1.05);
+}
+
+/* ====== CONTEÚDO PRINCIPAL ====== */
+.content {
+    margin-left: 260px;
+    padding: 40px;
+}
+
+.content h2 {
+    font-weight: 700;
+}
+
+/* ====== CARDS ====== */
+.card-option {
+    background-color: white;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+    color: #333;
+}
+
+.card-option:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-option i {
+    font-size: 45px;
+    color: #5d17e5;
+    margin-bottom: 15px;
+}
+
+.card-option .btn {
+    border-radius: 8px;
+    background-color: #5d17e5;
+    border: none;
+}
+
+.card-option .btn:hover {
+    background-color: #7f32ff;
+}
+
+/* ====== RESPONSIVIDADE ====== */
+@media (max-width: 992px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px;
+    }
+
+    .content {
+        margin-left: 0;
+        margin-top: 100px;
+        padding: 20px;
+    }
+
+    .card-option {
+        padding: 20px;
+    }
+}
