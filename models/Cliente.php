@@ -58,7 +58,7 @@ class Cliente {
     }
 
     public function listar() {
-        $sql = "select id_cliente as id, nome, telefone, ativo from Cliente order by nome";
+        $sql = "select id_cliente as id, nome, email, telefone, ativo from Cliente order by nome";
         $consulta = $this->pdo->prepare($sql);
         $consulta->execute();
 

@@ -46,7 +46,9 @@ if ($uploaded) {
     $imagem = time() . '.' . $ext;
     $_POST['imagem'] = $imagem;
 } else {
-    $_POST['imagem'] = $_POST['imagem'] ?? null;
+    // preserva a imagem atual quando nenhum arquivo novo foi enviado
+    // o form fornece um campo hidden `imagem_atual` com o nome da imagem existente
+    $_POST['imagem'] = $_POST['imagem_atual'] ?? $_POST['imagem'] ?? null;
 }
 
 $msg = $this->produto->salvar($_POST);

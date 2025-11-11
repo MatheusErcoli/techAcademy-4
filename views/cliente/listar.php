@@ -19,6 +19,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
+                        <th>Email</th>
                         <th>Telefone</th>
                         <th>Ativo</th>
                         <th>Opções</th>
@@ -32,6 +33,7 @@
                                 <tr>
                                     <td><?=$cliente->id?></td>
                                     <td><?=htmlspecialchars($cliente->nome)?></td>
+                                    <td><?=htmlspecialchars($cliente->email ?? '') ?></td>
                                     <td><?=htmlspecialchars($cliente->telefone ?? '')?></td>
                                     <td><?= (isset($cliente->ativo) && $cliente->ativo) ? 'Sim' : 'Não' ?></td>
                                     <td>
