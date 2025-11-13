@@ -27,6 +27,16 @@ class Produto
         return $consulta->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function listarMarca()
+{
+    $sql = "SELECT * FROM marca ORDER BY ds_marca";
+    $consulta = $this->pdo->prepare($sql);
+    $consulta->execute();
+
+    return $consulta->fetchAll(PDO::FETCH_OBJ);
+}
+
+
     public function salvar($dados)
     {
         // compatibiliza quantidade (form) → estoque (banco)
@@ -39,8 +49,8 @@ class Produto
         // salva ou atualiza
         if (empty($dados['id_produto'])) {
             $sql = "INSERT INTO produto 
-                (nome, id_categoria, descricao, valor, ativo, destaque, imagem, estoque)
-                VALUES (:nome, :id_categoria, :descricao, :valor, :ativo, :destaque, :imagem, :estoque)";
+                (nome, id_categoria, descricao, valor, ativo, destaque, imagem, estoque, id_marca)
+                VALUES (:nome, :id_categoria, :descricao, :valor, :ativo, :destaque, :imagem, :estoque, :id_marca)";
         } else {
             $sql = "UPDATE produto SET 
                 nome = :nome,
@@ -50,7 +60,8 @@ class Produto
                 ativo = :ativo,
                 destaque = :destaque,
                 imagem = :imagem,
-                estoque = :estoque
+                estoque = :estoque,
+                id_marca = :id_marca
                 WHERE id_produto = :id_produto";
         }
 
@@ -63,7 +74,8 @@ class Produto
         $consulta->bindParam(":destaque", $dados['destaque']);
         $consulta->bindParam(":imagem", $dados['imagem']);
         $consulta->bindParam(":estoque", $dados['estoque'], PDO::PARAM_INT);
-        
+        $consulta->bindParam(":id_marca", $dados['id_marca']);
+
         if (!empty($dados['id_produto'])) {
             $consulta->bindParam(":id_produto", $dados['id_produto']);
         }
@@ -72,13 +84,14 @@ class Produto
     }
 
     public function listar()
-    {
-        $sql = "SELECT * FROM produto ORDER BY id_produto";
-        $consulta = $this->pdo->prepare($sql);
-        $consulta->execute();
+{
+    $sql = "SELECT p.*, m.ds_marca FROM produto p LEFT JOIN marca m ON m.id_marca = p.id_marca ORDER BY p.id_produto";
+    $consulta = $this->pdo->prepare($sql);
+    $consulta->execute();
 
-        return $consulta->fetchAll(PDO::FETCH_OBJ);
-    }
+    return $consulta->fetchAll(PDO::FETCH_OBJ);
+}
+
 
     public function excluir($id)
     {

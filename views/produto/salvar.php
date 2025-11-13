@@ -7,6 +7,7 @@ $valor = trim($_POST['valor'] ?? null);
 $ativo = $_POST['ativo'] ?? null;
 $destaque = $_POST['destaque'] ?? null;
 $quantidade = $_POST['quantidade'] ?? 0;
+$id_marca = $_POST['id_marca'] ?? null;
 
 $valor = str_replace(".", "", $valor);
 $_POST['valor'] = str_replace(",", ".", $valor);

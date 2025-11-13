@@ -16,6 +16,7 @@ $id_categoria = $dados->id_categoria ?? null;
 $valor = $dados->valor ?? null;
 $estoque = $dados->estoque ?? 0;
 $imagem = $dados->imagem ?? null;
+$id_marca = $dados->id_marca ?? null;
 
 $valor = number_format($valor, 2, ',', '.');
 
@@ -60,10 +61,30 @@ if ($ativo === 'S' || $ativo === '1' || $ativo === 1) {
                         <input type="text" readonly name="id_produto" id="id_produto" class="form-control"
                             value="<?= $id ?>">
                     </div>
-                    <div class="col-12 col-md-8">
+                    <div class="col-12 col-md-6">
                         <label for="nome">Nome do Produto:</label>
                         <input type="text" name="nome" id="nome" class="form-control" required data-parsley-required-message="Digite o nome"
                             value="<?= $nome ?>">
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <label for="marca">Marca:</label>
+                        <select name="id_marca" id="id_marca" class="form-control">
+                            <option value="">Selecione</option>
+                            <?php
+                            $dadosMarca = $this->listarMarca();
+                            foreach ($dadosMarca as $marca) {
+                            ?>
+                            <option value="<?=$marca->id_marca?>">
+                                <?=$marca->ds_marca?>
+                            </option>
+
+                            <?php
+                            }
+                            ?>
+                        </select>
+                        <script>
+                            $("#id_marca").val(<?= $id_marca ?? '' ?>);
+                        </script>
                     </div>
                     <div class="col-12 col-md-3">
                         <label for="id_categoria">Categoria</label>
