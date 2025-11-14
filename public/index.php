@@ -127,7 +127,7 @@ session_start();
                             olá <?= $_SESSION["mcecelulares"]["nome"]; ?>
                         </span>
                         <a href="../views/dashboard/index.php" title="Dashboard" class="btn btn-success me-3">
-                            <i class="fa fa-dashboard"></i> Dashboard
+                            <i class="fa-solid fa-clipboard"></i> Dashboard
                         </a>
 
                         <a href="index/sair" title="Sair" class="btn btn-danger">

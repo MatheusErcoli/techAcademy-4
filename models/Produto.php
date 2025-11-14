@@ -94,12 +94,18 @@ class Produto
 
 
     public function excluir($id)
-    {
-        $sql = "DELETE FROM produto WHERE id_produto = :id_produto LIMIT 1";
-        $consulta = $this->pdo->prepare($sql);
-        $consulta->bindParam(":id_produto", $id);
-        return $consulta->execute();
-    }
+{
+    $sql = "DELETE FROM itempedido WHERE id_produto = :id_produto";
+    $consulta = $this->pdo->prepare($sql);
+    $consulta->bindParam(":id_produto", $id);
+    $consulta->execute();
+
+    $sql = "DELETE FROM produto WHERE id_produto = :id_produto LIMIT 1";
+    $consulta = $this->pdo->prepare($sql);
+    $consulta->bindParam(":id_produto", $id);
+    return $consulta->execute();
+}
+
 
     public function editar($id)
     {
