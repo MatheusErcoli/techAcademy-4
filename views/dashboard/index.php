@@ -128,18 +128,56 @@ $usuario = $_SESSION["mcecelulares"]["nome"];
     </div>
 
     <!-- Conteúdo principal -->
-    <div class="content">
+    <div class="content p-4">
         <h2 class="text-white fw-bold mb-4">
             Olá, Seja bem-vindo <?= htmlspecialchars($usuario) ?>
         </h2>
-
-        <div class="container">
-            <h4 class="text-white text-center mb-4">O que você gostaria de fazer?</h4>
-            <div class="row g-4">
-
+        <div class="row g-3">
+            <div class="col-12 col-md-3">
+                <iframe src="http://localhost:3000/public/question/2fca007d-ac54-4d85-b5bb-27202eef229f" width="100%"
+                    height="300"
+                    frameborder="0"
+                    allowtransparency="true"></iframe>
+            </div>
+            <div class="col-12 col-md-3">
+                <iframe src="http://localhost:3000/public/question/bee62dad-adb6-42bd-ba27-e159f919e80d" width="100%"
+                    height="300"
+                    frameborder="0"
+                    allowtransparency="true"></iframe>
+            </div>
+            <div class="col-12 col-md-3">
+                <iframe src="http://localhost:3000/public/question/f97a8f73-8013-41e0-870a-186c057586f0" width="100%"
+                    height="300"
+                    frameborder="0"
+                    allowtransparency="true"></iframe>
+            </div>
+            <div class="col-12 col-md-3">
+                <iframe src="http://localhost:3000/public/question/0ac27f1a-1626-42bb-8b30-893861a722b7" width="100%"
+                    height="300"
+                    frameborder="0"
+                    allowtransparency="true"></iframe>
             </div>
         </div>
-    </div>
+        <div class="row g-3">
+            <div class="col-12 col-md-4">
+                <iframe src="http://localhost:3000/public/question/b0f42542-0fac-4288-ab14-e72e41918b00" width="100%"
+                    height="300"
+                    frameborder="0"
+                    allowtransparency="true"></iframe>
+            </div>
+            <div class="col-12 col-md-4">
+                <iframe src="http://localhost:3000/public/question/b0f42542-0fac-4288-ab14-e72e41918b00" width="100%"
+                    height="300"
+                    frameborder="0"
+                    allowtransparency="true"></iframe>
+            </div>
+            <div class="col-12 col-md-4">
+                <iframe src="http://localhost:3000/public/question/6c59f4cd-ce2d-46f5-b1ae-6f966a6de96f" width="100%"
+                    height="300"
+                    frameborder="0"
+                    allowtransparency="true"></iframe>
+            </div>
+        </div>
     </div>
 
 </body>
