@@ -102,7 +102,8 @@ $usuario = $_SESSION["mcecelulares"]["nome"];
         }
 
         .logout-btn:hover {
-            background-color: #b82c3a;
+            background-color: #dc3545 !important;
+            transform: translateY(-2px);
         }
     </style>
 </head>
@@ -115,7 +116,7 @@ $usuario = $_SESSION["mcecelulares"]["nome"];
             <img src="../../public/images/logo.png" alt="logo">
         </a>
 
-        
+
         <a href="index.php"><i class="fa fa-home"></i> Home</a>
         <a href="produtos.php"><i class="fa fa-cart-shopping"></i> Produtos</a>
         <a href="clientes.php"><i class="fa fa-users"></i> Clientes</a>
@@ -171,7 +172,7 @@ $usuario = $_SESSION["mcecelulares"]["nome"];
                     frameborder="0"
                     allowtransparency="true"></iframe>
             </div>
-             <div class="col-12 col-md-4">
+            <div class="col-12 col-md-4">
                 <iframe src="http://localhost:3000/public/question/cfb9c50b-62c1-4dd2-abd5-246db83724b6" width="100%"
                     height="300"
                     frameborder="0"

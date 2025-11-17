@@ -102,7 +102,8 @@ $usuario = $_SESSION["mcecelulares"]["nome"];
         }
 
         .logout-btn:hover {
-            background-color: #b82c3a;
+            background-color: #dc3545 !important;
+            transform: translateY(-2px);
         }
     </style>
 </head>
