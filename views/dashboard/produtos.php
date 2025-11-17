@@ -118,7 +118,7 @@ $usuario = $_SESSION["mcecelulares"]["nome"];
         <a href="index.php"><i class="fa fa-home"></i> Home</a>
         <a href="produtos.php"><i class="fa fa-cart-shopping"></i> Produtos</a>
         <a href="clientes.php"><i class="fa fa-users"></i> Clientes</a>
-        <a href="vendas.php"><i></i>Vendas</a>
+        <a href="vendas.php"><i class="fa-solid fa-cart-shopping"></i>Vendas</a>
 
         <a href="../../public/index" class="logout-btn">
             <i class="fa fa-arrow-left"></i> Voltar
