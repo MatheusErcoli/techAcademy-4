@@ -1,3 +1,7 @@
+<?php
+
+
+?>
 <div class="container mt-5">
     <div class="card">
         <div class="card-header">
@@ -28,6 +32,7 @@
                         <th>Cliente</th>
                         <th>Funcionário</th>
                         <th>Data do pedido</th>
+                        <th>Ativo</th>
                         <th>Opções</th>
                     </tr>
                 </thead>
@@ -37,11 +42,12 @@
                 foreach($dadosPedido as $dados){
                 ?>
                 <tr>
-                    <td><?= isset($dados->id_pedido)?></td>
-                    <td><?= isset($dados->nome_cliente) ?></td>
-                    <td><?= isset($dados->nome_funcionario) ?></td>
-                    <td><?= isset($dados->data_pedido) ?></td>
-                    <td><a href="vendas/index/<?= ($dados->id_pedido) ?>" class="btn btn-success"><i class="fas fa-edit"></i><i></i></a></td>
+                    <td><?= $dados->id_pedido?></td>
+                    <td><?= $dados->nome_cliente?></td>
+                    <td><?= $dados->nome_funcionario?></td>
+                    <td><?= date("d/m/Y H:i", strtotime($dados->data_pedido)) ?></td>
+                    <td><?= $dados->ativo ?></td>
+                    <td><a href="vendas/index/<?= $dados->id_pedido ?>" class="btn btn-success"><i class="fas fa-edit"></i><i></i></a></td>
                 </tr>
                 <?php
                 }

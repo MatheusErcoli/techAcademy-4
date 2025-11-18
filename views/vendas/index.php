@@ -36,7 +36,7 @@ $ativo = $dados->ativo ?? null;
                 <div class="row">
                     <div class="col-12 col-md-4">
                         <label for="idPedido">ID_Pedido:</label>
-                        <input type="text" readonly name="id_pedido" id="id_pedido" class="form-control" value="<?php $idpedido ?>">
+                        <input type="text" readonly name="id_pedido" id="id_pedido" class="form-control" value="<?= $id_pedido ?>">
                     </div>
                     <div class="col-12 col-md-8">
                         <label for="id_cliente">Cliente:</label>
@@ -82,7 +82,7 @@ $ativo = $dados->ativo ?? null;
                     </div>
                     <div class="col-12 col-md-4">
                         <label for="data_pedido">Data de Pedido:</label>
-                        <input type="date" name="data_pedido" id="pedido" class="form-control" required data-parsley-required-message="Digite a data do pedido" value="<?= $datapedidovalue ?>">
+                        <input type="datetime-local" name="data_pedido" id="pedido" class="form-control" required data-parsley-required-message="Digite a data do pedido" value="<?= $dataPedido ?>">
                     </div>
                     <div class="col-12 col-md-2">
                         <label for="ativo">Ativo:</label>

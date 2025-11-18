@@ -14,9 +14,6 @@ if(empty($id_cliente)){
 }else if(empty($dataPedido)){
     echo "<script>mensagem('Digite a data do pedido','vendas','error');</script>";
     exit;
-}else if(empty($ativo)){
-    echo "<script>mensagem('Digite se está ativo','vendas','error');</script>";
-    exit;
 }
 
 $msg = $this->vendas->salvar($_POST);
