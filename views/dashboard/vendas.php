@@ -136,14 +136,14 @@ $usuario = $_SESSION["mcecelulares"]["nome"];
         </h2>
         <div class="row g-3">
             <div class="col-12 col-md-6">
-                <iframe src="http://localhost:3000/public/question/c593acbb-9653-4aa2-a78b-58495c5162bd" width="100%"
-                    height="300"
+                    <iframe src="http://localhost:3000/public/question/70fbc239-54c9-4d13-a53c-f25508a04c6f" width="100%"
+                    height="400"
                     frameborder="0"
                     allowtransparency="true"></iframe>
             </div>
-            <div class="col-12 col-md-6">
-                <iframe src="http://localhost:3000/public/question/a204149d-0c6c-41f0-9f62-ebcc41363b43" width="100%"
-                    height="300"
+             <div class="col-12 col-md-6">
+                    <iframe src="http://localhost:3000/public/question/eabf4adc-f1e1-4cc9-b111-0caec7bcfb82" width="100%"
+                    height="400"
                     frameborder="0"
                     allowtransparency="true"></iframe>
             </div>
@@ -164,6 +164,20 @@ $usuario = $_SESSION["mcecelulares"]["nome"];
             <div class="col-12 col-md-4">
                 <iframe src="http://localhost:3000/public/question/aef560bc-68b9-4843-9935-c674762ff728" width="100%"
                     height="500"
+                    frameborder="0"
+                    allowtransparency="true"></iframe>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <iframe src="http://localhost:3000/public/question/c593acbb-9653-4aa2-a78b-58495c5162bd" width="100%"
+                    height="300"
+                    frameborder="0"
+                    allowtransparency="true"></iframe>
+            </div>
+            <div class="col-12 col-md-6">
+                <iframe src="http://localhost:3000/public/question/a204149d-0c6c-41f0-9f62-ebcc41363b43" width="100%"
+                    height="300"
                     frameborder="0"
                     allowtransparency="true"></iframe>
             </div>
