@@ -104,6 +104,7 @@ $usuario = $_SESSION["mcecelulares"]["nome"];
         .logout-btn:hover {
             background-color: #dc3545 !important;
             transform: translateY(-2px);
+            
         }
     </style>
 </head>
@@ -122,7 +123,7 @@ $usuario = $_SESSION["mcecelulares"]["nome"];
         <a href="clientes.php"><i class="fa fa-users"></i> Clientes</a>
         <a href="vendas.php"><i class="fa-solid fa-cart-shopping"></i>Vendas</a>
 
-        <a href="../../public/index" class="logout-btn">
+        <a href="../../public/index" class="btn logout-btn">
             <i class="fa fa-arrow-left"></i> Voltar
         </a>
 
@@ -131,29 +132,17 @@ $usuario = $_SESSION["mcecelulares"]["nome"];
     <!-- Conteúdo principal -->
     <div class="content p-4">
         <h2 class="text-white fw-bold mb-4">
-            Olá, Seja bem-vindo <?= htmlspecialchars($usuario) ?>
+            Suas vendas
         </h2>
         <div class="row g-3">
-            <div class="col-12 col-md-3">
-                <iframe src="http://localhost:3000/public/question/2fca007d-ac54-4d85-b5bb-27202eef229f" width="100%"
+            <div class="col-12 col-md-6">
+                <iframe src="http://localhost:3000/public/question/c593acbb-9653-4aa2-a78b-58495c5162bd" width="100%"
                     height="300"
                     frameborder="0"
                     allowtransparency="true"></iframe>
             </div>
-            <div class="col-12 col-md-3">
-                <iframe src="http://localhost:3000/public/question/bee62dad-adb6-42bd-ba27-e159f919e80d" width="100%"
-                    height="300"
-                    frameborder="0"
-                    allowtransparency="true"></iframe>
-            </div>
-            <div class="col-12 col-md-3">
-                <iframe src="http://localhost:3000/public/question/f97a8f73-8013-41e0-870a-186c057586f0" width="100%"
-                    height="300"
-                    frameborder="0"
-                    allowtransparency="true"></iframe>
-            </div>
-            <div class="col-12 col-md-3">
-                <iframe src="http://localhost:3000/public/question/0ac27f1a-1626-42bb-8b30-893861a722b7" width="100%"
+            <div class="col-12 col-md-6">
+                <iframe src="http://localhost:3000/public/question/a204149d-0c6c-41f0-9f62-ebcc41363b43" width="100%"
                     height="300"
                     frameborder="0"
                     allowtransparency="true"></iframe>
@@ -161,20 +150,20 @@ $usuario = $_SESSION["mcecelulares"]["nome"];
         </div>
         <div class="row g-3">
             <div class="col-12 col-md-4">
-                <iframe src="http://localhost:3000/public/question/b0f42542-0fac-4288-ab14-e72e41918b00" width="100%"
-                    height="300"
+                <iframe src="http://localhost:3000/public/question/f0e0199d-b82e-441b-8a5e-2b29ea5cb24f" width="100%"
+                    height="500"
                     frameborder="0"
                     allowtransparency="true"></iframe>
             </div>
             <div class="col-12 col-md-4">
-                <iframe src="http://localhost:3000/public/question/6c59f4cd-ce2d-46f5-b1ae-6f966a6de96f" width="100%"
-                    height="300"
+                <iframe src="http://localhost:3000/public/question/b8868240-aeb9-4200-aba0-d1603eb72754" width="100%"
+                    height="500"
                     frameborder="0"
                     allowtransparency="true"></iframe>
             </div>
             <div class="col-12 col-md-4">
-                <iframe src="http://localhost:3000/public/question/cfb9c50b-62c1-4dd2-abd5-246db83724b6" width="100%"
-                    height="300"
+                <iframe src="http://localhost:3000/public/question/aef560bc-68b9-4843-9935-c674762ff728" width="100%"
+                    height="500"
                     frameborder="0"
                     allowtransparency="true"></iframe>
             </div>

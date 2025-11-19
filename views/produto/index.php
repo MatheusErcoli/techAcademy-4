@@ -68,7 +68,7 @@ if ($ativo === 'S' || $ativo === '1' || $ativo === 1) {
                     </div>
                     <div class="col-12 col-md-2">
                         <label for="marca">Marca:</label>
-                        <select name="id_marca" id="id_marca" class="form-control">
+                        <select name="id_marca" id="id_marca" class="form-control" required data-parsley-required-message="Selecione uma marca">
                             <option value="">Selecione</option>
                             <?php
                             $dadosMarca = $this->listarMarca();
