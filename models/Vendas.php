@@ -93,4 +93,22 @@ class Vendas
 
         return $consulta->fetchAll(PDO::FETCH_OBJ);
     }
+
+    public function listarPedidos()
+    {
+        $sql = "select * from pedido order by id_pedido";
+        $consulta = $this->pdo->prepare($sql);
+        $consulta->execute();
+
+        return $consulta->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function listarProdutos()
+    {
+        $sql = "select * from produto order by id_produto";
+        $consulta = $this->pdo->prepare($sql);
+        $consulta->execute();
+
+        return $consulta->fetchAll(PDO::FETCH_OBJ);
+    }
 }
