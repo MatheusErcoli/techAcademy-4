@@ -26,4 +26,19 @@ class VendasController{
     {
         require "../views/vendas/listar.php";
     }
+
+    public function item()
+    {
+        require "../views/vendas/item.php";
+    }
+
+    public function listarItem()
+    {
+        require "../views/vendas/listarItem.php";
+    }
+
+    public function salvarItem()
+    {
+        require "../views/vendas/salvarItem.php";
+    }
 }
