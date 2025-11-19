@@ -29,7 +29,7 @@ class Produto
 
     public function listarMarca()
 {
-    $sql = "SELECT * FROM marca ORDER BY ds_marca";
+    $sql = "SELECT * FROM marca ORDER BY id_marca";
     $consulta = $this->pdo->prepare($sql);
     $consulta->execute();
 

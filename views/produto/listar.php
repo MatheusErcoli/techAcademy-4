@@ -1,4 +1,4 @@
-<div class="container-fluid" style="margin-top: 40px;">
+<div class="container-fluid mt-5">
     <div class="card">
         <div class="card-header">
             <div class="float-start">
@@ -31,8 +31,6 @@
     </thead>
     <tbody>
       <?php
-        // Não chamar $this->listar() aqui — isso chama o controller que inclui esta view novamente
-        // e causa recursão/loop. Buscar os dados direto do model:
         $dadosProduto = $this->produto->listar();
         foreach($dadosProduto as $dados){
           ?>
@@ -40,11 +38,10 @@
               <td><?= isset($dados->id_produto) ? $dados->id_produto : (isset($dados->id) ? $dados->id : '') ?></td>
               <td>
                 <?php if(!empty($dados->imagem)): ?>
-                  <!-- usar caminho relativo para funcionar com <base> definido em public/index.php -->
                   <img src="arquivos/<?= htmlspecialchars($dados->imagem) ?>" alt="<?= htmlspecialchars($dados->nome ?? '') ?>" style="max-width:80px; max-height:60px;" />
                 <?php endif; ?>
               </td>
-              <td><?= htmlspecialchars($dados->nome ?? '') ?></td>
+              <td><?=$dados->nome ?></td>
               <td><?= htmlspecialchars($dados->descricao ?? '') ?></td>
               <td><?= htmlspecialchars($dados->ds_marca ?? '') ?></td>
               <td><?= htmlspecialchars($dados->valor ?? '') ?></td>

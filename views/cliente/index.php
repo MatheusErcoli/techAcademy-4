@@ -47,7 +47,7 @@ if  (!empty($id)) {
                     </div>
                     <div class="col-12 col-md-3">
                         <label for="senha">Digite a sua senha:</label>
-                        <input type="password" name="senha" id="senha" class="form-control">
+                        <input type="password" name="senha" id="senha" class="form-control" required data-parsley-required-message="Digite uma senha">
                     </div>
                     <div class="col-12 col-md-3">
                         <label for="redigite">Redigite a senha</label>

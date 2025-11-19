@@ -38,7 +38,7 @@ if ($ativo === 'S' || $ativo === '1' || $ativo === 1) {
 }
 ?>
 
-<div class="container" style="margin-top: 40px;">
+<div class="container mt-5">
     <div class="card">
         <div class="card-header">
             <div class="float-start">

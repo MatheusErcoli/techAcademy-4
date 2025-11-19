@@ -1,4 +1,4 @@
-<div class="container" style="margin-top:40px;">
+<div class="container mt-5">
     <div class="card">
         <div class="card-header text-center">
             <h3>Olá, Seja bem-vindo <?= $_SESSION["mcecelulares"]["nome"]; ?></h3>

@@ -42,7 +42,7 @@
         }
 
         public function listar() {
-            $sql = "select * from funcionario order by nome";
+            $sql = "select * from funcionario order by id_funcionario";
             $consulta = $this->pdo->prepare($sql);
             $consulta->execute();
 

@@ -1,4 +1,4 @@
-<div class="container" style="margin-top: 40px;">
+<div class="container mt-5">
     <div class="card">
         <h1 class="text-center">Erro! Página não encontrada</h1>
         <p class="text-center">

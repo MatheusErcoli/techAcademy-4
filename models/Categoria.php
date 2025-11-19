@@ -34,7 +34,7 @@ class Categoria
     }
 
     public function listar(){
-        $sql = "select * from categoria order by nome";
+        $sql = "select * from categoria order by id_categoria";
         $consulta = $this->pdo->prepare($sql);
         $consulta->execute();
 

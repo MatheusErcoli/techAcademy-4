@@ -54,21 +54,6 @@ session_start();
                 location.href = url;
             });
         }
-
-        //mensagem para excluir
-        excluir = function(id, tabela) {
-            Swal.fire({
-                icon: "question",
-                title: "Deseja realmente excluir?",
-                showCancelButton: true,
-                confirmButtonText: 'Excluir',
-                cancelButtonText: 'Cancelar',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    location.href = tabela + '/excluir/' + id;
-                }
-            });
-        }
     </script>
 </head>
 
