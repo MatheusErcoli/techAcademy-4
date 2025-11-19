@@ -1,4 +1,4 @@
-<div class="container" style="margin-top: 40px;">
+<div class="container-fluid" style="margin-top: 40px;">
     <div class="card">
         <div class="card-header">
             <div class="float-start">
