@@ -6,7 +6,7 @@ $descricao = trim($_POST['descricao'] ?? null);
 $valor = trim($_POST['valor'] ?? null);
 $ativo = $_POST['ativo'] ?? null;
 $destaque = $_POST['destaque'] ?? null;
-$quantidade = $_POST['quantidade'] ?? 0;
+$estoque = $_POST['estoque'] ?? 0;
 $id_marca = $_POST['id_marca'] ?? null;
 
 $valor = str_replace(".", "", $valor);
@@ -15,7 +15,7 @@ $_POST['id_categoria'] = (int) ($id_categoria ?? 0);
 $_POST['valor'] = (float) ($_POST['valor'] ?? 0);
 $_POST['ativo'] = (isset($ativo) && ($ativo === 'S' || $ativo === '1' || $ativo === 1 || $ativo === true)) ? 1 : 0;
 $_POST['destaque'] = (isset($destaque) && ($destaque === 'S' || $destaque === '1' || $destaque === 1 || $destaque === true)) ? 1 : 0;
-$_POST['estoque'] = (int) ($quantidade ?? 0);
+$_POST['estoque'] = (int) ($estoque ?? 0);
 
 if (empty($nome)) {
     echo "<script>mensagem('Digite o nome do produto','produto','error');</script>";
@@ -29,7 +29,7 @@ if (empty($nome)) {
 } else if (empty($valor)) {
     echo "<script>mensagem('Digite o valor do produto','produto','error');</script>";
     exit;
-} else if ($quantidade === null || !is_numeric($quantidade) || (int)$quantidade < 0) {
+} else if ($estoque === null || !is_numeric($estoque) || (int)$estoque < 0) {
     echo "<script>mensagem('Digite uma quantidade válida para o estoque','produto','error');</script>";
     exit;
 }

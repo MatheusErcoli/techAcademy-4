@@ -39,12 +39,8 @@ class Produto
 
     public function salvar($dados)
     {
-        // compatibiliza quantidade (form) → estoque (banco)
-        if (isset($dados['quantidade'])) {
-            $dados['estoque'] = (int)$dados['quantidade'];
-        } else {
-            $dados['estoque'] = isset($dados['estoque']) ? (int)$dados['estoque'] : 0;
-        }
+        // garante que estoque é um inteiro válido
+        $dados['estoque'] = isset($dados['estoque']) ? (int)$dados['estoque'] : 0;
 
         // salva ou atualiza
         if (empty($dados['id_produto'])) {

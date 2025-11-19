@@ -125,8 +125,8 @@ if ($ativo === 'S' || $ativo === '1' || $ativo === 1) {
                         <input type="text" name="valor" id="valor" class="form-control" required data-parsley-required-message="Digite o Valor" value="<?= $valor ?>">
                     </div>
                     <div class="col-12 col-md-2">
-                        <label for="quantidade">Estoque:</label>
-                        <input type="number" min="0" name="quantidade" id="quantidade" class="form-control" value="<?= $estoque ?>">
+                        <label for="estoque">Estoque:</label>
+                        <input type="number" min="0" name="estoque" id="estoque" class="form-control" value="<?= $estoque ?>">
                     </div>
                     <div class="col-12 col-md-2">
                         <label for="destaque">Destaque:</label>
