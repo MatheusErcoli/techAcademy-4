@@ -1,7 +1,3 @@
-<?php
-
-
-?>
 <div class="container mt-5">
     <div class="card">
         <div class="card-header">
@@ -38,7 +34,6 @@
                 </thead>
                 <tbody>
                 <?php
-                $dadosPedido = $this->vendas->listar();
                 foreach($dadosPedido as $dados){
                 ?>
                 <tr>
@@ -47,7 +42,7 @@
                     <td><?= $dados->nome_funcionario?></td>
                     <td><?= date("d/m/Y H:i", strtotime($dados->data_pedido)) ?></td>
                     <td><?= $dados->ativo ?></td>
-                    <td><a href="vendas/index/<?= $dados->id_pedido ?>" class="btn btn-success"><i class="fas fa-edit"></i><i></i></a></td>
+                    <td><a href="vendas/index/<?= $dados->id_pedido ?>" class="btn btn-success"><i class="fas fa-edit"></i></a></td>
                 </tr>
                 <?php
                 }

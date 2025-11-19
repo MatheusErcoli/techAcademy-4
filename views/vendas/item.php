@@ -43,7 +43,6 @@ $preco_unitario = $dados->preco_unitario ?? null;
                         <select name="id_pedido" id="id_pedido" required data-parsley-required-message="Selecione o N° do pedido" class="form-control">
                             <option value="">Selecione</option>
                             <?php
-                            $dadosPedido = $this->listarPedidos();
                             foreach ($dadosPedido as $dados) {
                             ?>
                                 <option value="<?= $dados->id_pedido ?>">
@@ -62,10 +61,9 @@ $preco_unitario = $dados->preco_unitario ?? null;
                         <select name="id_produto" id="id_produto" required data-parsley-required-message="Selecione o produto" class="form-control">
                             <option value="">Selecione</option>
                             <?php
-                            $dadosProdutos = $this->listarProdutos();
                             foreach ($dadosProdutos as $dados) {
                             ?>
-                                <option value="<?= $dados->id_produto ?>">
+                                <option value="<?= $dados->id_produto ?>" data-preco="<?= $dados->valor ?>">
                                     <?= $dados->nome ?>
                                 </option>
                             <?php
@@ -85,7 +83,7 @@ $preco_unitario = $dados->preco_unitario ?? null;
                 <div class="row">
                     <div class="col-12 col-md-4">
                         <label for="preco_unitario">Preço unitário:</label>
-                        <input type="text" name="preco_unitario" id="preco_unitario" class="form-control" required data-parsley-required-message="Digite o preço unitário" value="<?= $preco_unitario ?>">
+                        <input type="text" name="preco_unitario" id="preco_unitario" class="form-control" required data-parsley-required-message="Digite o preço unitário" value="<?= $preco_unitario ?>" readonly>
                     </div>
                 </div>
                 <br>
@@ -97,10 +95,27 @@ $preco_unitario = $dados->preco_unitario ?? null;
     </div>
 </div>
 <script>
-    $(function(){
+    $(function() {
         $('#valor').maskMoney({
             thousands: '.',
             decimal: ','
         });
     })
+</script>
+<script>
+    document.getElementById('id_produto').addEventListener('change', function() {
+
+        // Pega o option selecionado
+        let option = this.options[this.selectedIndex];
+
+        // Lê o preço armazenado no data-preco
+        let preco = option.getAttribute('data-preco');
+
+        // Se existir preço, preenche o input
+        if (preco) {
+            document.getElementById('preco_unitario').value = preco;
+        } else {
+            document.getElementById('preco_unitario').value = "";
+        }
+    });
 </script>

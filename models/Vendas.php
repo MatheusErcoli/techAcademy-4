@@ -94,18 +94,66 @@ class Vendas
         return $consulta->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function listarPedidos()
+   public function listarPedidos()
+{
+    $sql = "SELECT * FROM pedido ORDER BY id_pedido DESC";
+    $consulta = $this->pdo->prepare($sql);
+    $consulta->execute();
+    return $consulta->fetchAll(PDO::FETCH_OBJ);
+}
+
+
+    public function listarProdutos()
     {
-        $sql = "select * from pedido order by id_pedido";
+        $sql = "select * from produto order by id_produto";
         $consulta = $this->pdo->prepare($sql);
         $consulta->execute();
 
         return $consulta->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function listarProdutos()
+    public function salvarItem($dados)
     {
-        $sql = "select * from produto order by id_produto";
+        if(empty($dados['id_item'])){
+            $sql = "insert into itempedido (id_pedido, id_produto, quantidade, preco_unitario) values (:id_pedido, :id_produto, :quantidade, :preco_unitario)";
+        } else {
+            $sql = "update itempedido set id_pedido = :id_pedido, id_produto = :id_produto, quantidade = :quantidade, preco_unitario = :preco_unitario where id_item = :id_item limit 1";
+        }
+
+        $consulta = $this->pdo->prepare($sql);
+        $consulta->bindParam(":id_pedido", $dados['id_pedido']);
+        $consulta->bindParam(":id_produto", $dados['id_produto']);
+        $consulta->bindParam(":quantidade", $dados['quantidade']);
+        $consulta->bindParam(":preco_unitario", $dados['preco_unitario']);
+
+        if(!empty($dados['id_item'])){
+            $consulta->bindParam(":id_item", $dados['id_item']);
+        }
+        return $consulta->execute();
+    }
+    public function editarItem($id)
+    {
+        $sql = "select * from itempedido where id_item = :id_item limit 1";
+        $consulta = $this->pdo->prepare($sql);
+        $consulta->bindParam(":id_item", $id);
+        $consulta->execute();
+
+        return $consulta->fetch(PDO::FETCH_OBJ);
+        
+    }
+
+    public function listarItem()
+    {
+        $sql = "select 
+                ip.id_item,
+                p.id_pedido,
+                pr.nome,
+                ip.quantidade,
+                ip.preco_unitario
+                from itempedido ip
+                inner join pedido p on p.id_pedido = ip.id_pedido
+                inner join produto pr on pr.id_produto = ip.id_produto
+                order by ip.id_item";
         $consulta = $this->pdo->prepare($sql);
         $consulta->execute();
 
