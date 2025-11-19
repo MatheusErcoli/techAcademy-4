@@ -77,10 +77,30 @@ $preco_unitario = $dados->preco_unitario ?? null;
                         </script>
                     </div>
                     <div class="col-12 col-md-3">
-                        
+                        <label for="quantidade">Quantidade:</label>
+                        <input type="number" min="0" name="quantidade" id="quantidade" class="form-control" required data-parsley-required-message="Digite a quantidade" value="<?= $quantidade ?>">
                     </div>
                 </div>
+                <br>
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                        <label for="preco_unitario">Preço unitário:</label>
+                        <input type="text" name="preco_unitario" id="preco_unitario" class="form-control" required data-parsley-required-message="Digite o preço unitário" value="<?= $preco_unitario ?>">
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-formulario float-end">
+                    <i class="fas fa-check"></i> Salvar/Alterar
+                </button>
             </form>
         </div>
     </div>
 </div>
+<script>
+    $(function(){
+        $('#valor').maskMoney({
+            thousands: '.',
+            decimal: ','
+        });
+    })
+</script>
