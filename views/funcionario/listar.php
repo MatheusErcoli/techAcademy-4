@@ -38,7 +38,7 @@
                                     <td><?=$dados->id_funcionario?></td>
                                     <td><?=htmlspecialchars($dados->nome)?></td>
                                     <td><?=htmlspecialchars($dados->cargo)?></td>
-                                    <td><?=htmlspecialchars($dados->salario)?></td>
+                                    <td><?=$salario?></td>
                                     <td><?=htmlspecialchars($dados->email)?></td>
                                     <td><?=htmlspecialchars($dados->telefone)?></td>
                                     <td><?=htmlspecialchars($dados->data_admissao ?? $dados->dataAdmissao ?? '')?></td>
