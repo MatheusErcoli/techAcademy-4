@@ -52,14 +52,12 @@
                 <?php endif; ?>
               </td>
 
-              <td><?= htmlspecialchars($dados->nome ?? '') ?></td>
-              <td><?= htmlspecialchars($dados->descricao ?? '') ?></td>
-              <td><?= htmlspecialchars($dados->ds_marca ?? '') ?></td>
-
-              <!-- 🔥 VALOR FORMATADO -->
+              <td><?= $dados->nome ?? '' ?></td>
+              <td><?= $dados->descricao ?? '' ?></td>
+              <td><?= $dados->ds_marca ?? '' ?></td>
               <td><?= $valor ?></td>
 
-              <td><?= htmlspecialchars((string)(($dados->quantidade ?? $dados->estoque) ?? 0)) ?></td>
+              <td><?=$dados->estoque ?? 0 ?></td>
               <td><?= (!empty($dados->destaque)) ? 'Sim' : 'Não' ?></td>
               <td><?= (!empty($dados->ativo)) ? 'Sim' : 'Não' ?></td>
 

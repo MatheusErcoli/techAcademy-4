@@ -36,13 +36,13 @@
                             ?>
                                 <tr>
                                     <td><?=$dados->id_funcionario?></td>
-                                    <td><?=htmlspecialchars($dados->nome)?></td>
-                                    <td><?=htmlspecialchars($dados->cargo)?></td>
+                                    <td><?=$dados->nome?></td>
+                                    <td><?=$dados->cargo?></td>
                                     <td><?=$salario?></td>
-                                    <td><?=htmlspecialchars($dados->email)?></td>
-                                    <td><?=htmlspecialchars($dados->telefone)?></td>
-                                    <td><?=htmlspecialchars($dados->data_admissao ?? $dados->dataAdmissao ?? '')?></td>
-                                    <td><?=($dados->ativo == 1) ? 'Sim' : 'Não'?></td>
+                                    <td><?=$dados->email?></td>
+                                    <td><?=$dados->telefone?></td>
+                                    <td><?=$dados->data_admissao ?? ''?></td>
+                                    <td><?=$dados->ativo == 1 ? 'Sim' : 'Não'?></td>
                                     <td>
                                         <a href="funcionario/index/<?=$dados->id_funcionario?>" class="btn btn-success"><i class="fas fa-edit"></i></a>
                                         <a href="javascript:excluir(<?=$dados->id_funcionario?>,'funcionario')" class="btn btn-danger"><i class="fas fa-trash"></i></a>

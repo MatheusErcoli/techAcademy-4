@@ -36,8 +36,8 @@
                             ?>
                                 <tr>
                                     <td><?=$dados->id_categoria?></td>
-                                    <td><?=htmlspecialchars($dados->nome)?></td>
-                                    <td><?=htmlspecialchars(strip_tags($dados->descricao))?></td>
+                                    <td><?=$dados->nome?></td>
+                                    <td><?=strip_tags($dados->descricao)?></td>
                                     <td><?=$dados->ativo?></td>
                                     <td>
                                         <a href="categoria/index/<?=$dados->id_categoria?>" class="btn btn-success"><i class="fas fa-edit"></i></a>
