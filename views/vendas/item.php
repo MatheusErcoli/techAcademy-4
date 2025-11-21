@@ -2,11 +2,16 @@
 if (!empty($id)) {
     $id = isset($dados->id_item) ? $dados->id_item : $id;
 }
+
 $id_item = $dados->id_item ?? null;
 $id_pedido = $dados->id_pedido ?? null;
 $id_produto = $dados->id_produto ?? null;
 $quantidade = $dados->quantidade ?? null;
-$preco_unitario = $dados->preco_unitario ?? null;
+
+// 🔥 number_format aplicado corretamente no preço unitário
+$preco_unitario = isset($dados->preco_unitario)
+    ? number_format($dados->preco_unitario, 2, ",", ".")
+    : "";
 
 ?>
 <div class="container mt-5">
@@ -38,84 +43,74 @@ $preco_unitario = $dados->preco_unitario ?? null;
                         <label for="id_item">ID:</label>
                         <input type="text" readonly name="id_item" id="id_item" class="form-control" value="<?= $id_item ?>">
                     </div>
+
                     <div class="col-12 col-md-4">
                         <label for="id_pedido">ID Pedido:</label>
-                        <select name="id_pedido" id="id_pedido" required data-parsley-required-message="Selecione o N° do pedido" class="form-control">
+                        <select name="id_pedido" id="id_pedido" required class="form-control">
                             <option value="">Selecione</option>
-                            <?php
-                            foreach ($dadosPedido as $dados) {
-                            ?>
+                            <?php foreach ($dadosPedido as $dados) { ?>
                                 <option value="<?= $dados->id_pedido ?>">
                                     <?= $dados->id_pedido ?>
                                 </option>
-                            <?php
-                            }
-                            ?>
+                            <?php } ?>
                         </select>
                         <script>
                             $("#id_pedido").val(<?= $id_pedido ?? '' ?>)
                         </script>
                     </div>
+
                     <div class="col-12 col-md-4">
                         <label for="id_produto">Produto</label>
-                        <select name="id_produto" id="id_produto" required data-parsley-required-message="Selecione o produto" class="form-control">
+                        <select name="id_produto" id="id_produto" required class="form-control">
                             <option value="">Selecione</option>
-                            <?php
-                            foreach ($dadosProdutos as $dados) {
-                            ?>
-                                <option value="<?= $dados->id_produto ?>" data-preco="<?= $dados->valor ?>">
+
+                            <?php foreach ($dadosProdutos as $dados): ?>
+                                <option value="<?= $dados->id_produto ?>"
+                                    data-preco="<?= number_format($dados->valor, 2, ",", ".") ?>">
                                     <?= $dados->nome ?>
                                 </option>
-                            <?php
-                            }
-                            ?>
+                            <?php endforeach; ?>
                         </select>
+
                         <script>
                             $("#id_produto").val(<?= $id_produto ?? '' ?>)
                         </script>
                     </div>
+
                     <div class="col-12 col-md-3">
                         <label for="quantidade">Quantidade:</label>
-                        <input type="number" min="0" name="quantidade" id="quantidade" class="form-control" required data-parsley-required-message="Digite a quantidade" value="<?= $quantidade ?>">
+                        <input type="number" min="0" name="quantidade" id="quantidade"
+                            class="form-control" required value="<?= $quantidade ?>">
                     </div>
                 </div>
+
                 <br>
+
                 <div class="row">
                     <div class="col-12 col-md-4">
                         <label for="preco_unitario">Preço unitário:</label>
-                        <input type="text" name="preco_unitario" id="preco_unitario" class="form-control" required data-parsley-required-message="Digite o preço unitário" value="<?= $preco_unitario ?>" readonly>
+                        <input type="text" name="preco_unitario" id="preco_unitario"
+                            class="form-control" required value="<?= $preco_unitario ?>" readonly>
                     </div>
                 </div>
+
                 <br>
+
                 <button type="submit" class="btn btn-formulario float-end">
                     <i class="fas fa-check"></i> Salvar/Alterar
                 </button>
+
             </form>
         </div>
     </div>
 </div>
-<script>
-    $(function() {
-        $('#valor').maskMoney({
-            thousands: '.',
-            decimal: ','
-        });
-    })
-</script>
+
 <script>
     document.getElementById('id_produto').addEventListener('change', function() {
 
-        // Pega o option selecionado
         let option = this.options[this.selectedIndex];
-
-        // Lê o preço armazenado no data-preco
         let preco = option.getAttribute('data-preco');
 
-        // Se existir preço, preenche o input
-        if (preco) {
-            document.getElementById('preco_unitario').value = preco;
-        } else {
-            document.getElementById('preco_unitario').value = "";
-        }
+        document.getElementById('preco_unitario').value = preco ? preco : "";
     });
 </script>

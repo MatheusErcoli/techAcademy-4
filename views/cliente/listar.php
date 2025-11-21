@@ -1,4 +1,4 @@
-<div class="container" style="margin-top: 40px;">
+<div class="container mt-5">
     <div class="card">
         <div class="card-header">
             <div class="float-start">
@@ -32,10 +32,10 @@
                             ?>
                                 <tr>
                                     <td><?=$cliente->id?></td>
-                                    <td><?=htmlspecialchars($cliente->nome)?></td>
-                                    <td><?=htmlspecialchars($cliente->email ?? '') ?></td>
-                                    <td><?=htmlspecialchars($cliente->telefone ?? '')?></td>
-                                    <td><?= (isset($cliente->ativo) && $cliente->ativo) ? 'Sim' : 'Não' ?></td>
+                                    <td><?=$cliente->nome?></td>
+                                    <td><?=$cliente->email ?? '' ?></td>
+                                    <td><?=$cliente->telefone ?? ''?></td>
+                                    <td><?= $cliente->ativo ? 'Sim' : 'Não' ?></td>
                                     <td>
                                         <a href="cliente/index/<?=$cliente->id?>" class="btn btn-success">
                                             <i class="fas fa-edit"></i>

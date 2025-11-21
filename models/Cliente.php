@@ -6,7 +6,7 @@ class Cliente {
         $this->pdo = $pdo;
     }
 
-    // buscar cliente por email (usado no login)
+    
     public function getCliente($email){
         $sql = "select id_cliente as id, nome, email, senha from Cliente where email = :email limit 1";
         $consulta = $this->pdo->prepare($sql);

@@ -17,26 +17,6 @@ class Produto
 
         require "../views/produto/index.php";
     }
-
-    public function listarCategoria()
-    {
-        $sql = "SELECT * FROM categoria ORDER BY descricao";
-        $consulta = $this->pdo->prepare($sql);
-        $consulta->execute();
-
-        return $consulta->fetchAll(PDO::FETCH_OBJ);
-    }
-
-    public function listarMarca()
-{
-    $sql = "SELECT * FROM marca ORDER BY id_marca";
-    $consulta = $this->pdo->prepare($sql);
-    $consulta->execute();
-
-    return $consulta->fetchAll(PDO::FETCH_OBJ);
-}
-
-
     public function salvar($dados)
     {
         // garante que estoque é um inteiro válido
@@ -112,4 +92,21 @@ class Produto
 
         return $consulta->fetch(PDO::FETCH_OBJ);
     }
+    public function listarCategoria()
+    {
+        $sql = "SELECT * FROM categoria ORDER BY descricao";
+        $consulta = $this->pdo->prepare($sql);
+        $consulta->execute();
+
+        return $consulta->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function listarMarca()
+{
+    $sql = "SELECT * FROM marca ORDER BY id_marca";
+    $consulta = $this->pdo->prepare($sql);
+    $consulta->execute();
+
+    return $consulta->fetchAll(PDO::FETCH_OBJ);
+}
 }

@@ -18,24 +18,6 @@ class Vendas
 
         require "../views/vendas/index.php";
     }
-
-    public function listarClientes()
-    {
-        $sql = "select * from cliente order by nome";
-        $consulta = $this->pdo->prepare($sql);
-        $consulta->execute();
-
-        return $consulta->fetchAll(PDO::FETCH_OBJ);
-    }
-
-    public function listarFuncionario()
-    {
-        $sql = "select * from funcionario order by nome";
-        $consulta = $this->pdo->prepare($sql);
-        $consulta->execute();
-
-        return $consulta->fetchAll(PDO::FETCH_OBJ);
-    }
     public function editar($id)
     {
         $sql = "select * from pedido where id_pedido = :id_pedido limit 1";
@@ -94,24 +76,6 @@ class Vendas
         return $consulta->fetchAll(PDO::FETCH_OBJ);
     }
 
-   public function listarPedidos()
-{
-    $sql = "SELECT * FROM pedido ORDER BY id_pedido DESC";
-    $consulta = $this->pdo->prepare($sql);
-    $consulta->execute();
-    return $consulta->fetchAll(PDO::FETCH_OBJ);
-}
-
-
-    public function listarProdutos()
-    {
-        $sql = "select * from produto order by id_produto";
-        $consulta = $this->pdo->prepare($sql);
-        $consulta->execute();
-
-        return $consulta->fetchAll(PDO::FETCH_OBJ);
-    }
-
     public function salvarItem($dados)
     {
         if(empty($dados['id_item'])){
@@ -154,6 +118,41 @@ class Vendas
                 inner join pedido p on p.id_pedido = ip.id_pedido
                 inner join produto pr on pr.id_produto = ip.id_produto
                 order by ip.id_item";
+        $consulta = $this->pdo->prepare($sql);
+        $consulta->execute();
+
+        return $consulta->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function listarClientes()
+    {
+        $sql = "select * from cliente order by nome";
+        $consulta = $this->pdo->prepare($sql);
+        $consulta->execute();
+
+        return $consulta->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function listarFuncionario()
+    {
+        $sql = "select * from funcionario order by nome";
+        $consulta = $this->pdo->prepare($sql);
+        $consulta->execute();
+
+        return $consulta->fetchAll(PDO::FETCH_OBJ);
+    }
+     public function listarPedidos()
+{
+    $sql = "SELECT * FROM pedido ORDER BY id_pedido DESC";
+    $consulta = $this->pdo->prepare($sql);
+    $consulta->execute();
+    return $consulta->fetchAll(PDO::FETCH_OBJ);
+}
+
+
+    public function listarProdutos()
+    {
+        $sql = "select * from produto order by id_produto";
         $consulta = $this->pdo->prepare($sql);
         $consulta->execute();
 
