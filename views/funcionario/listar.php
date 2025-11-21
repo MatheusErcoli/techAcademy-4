@@ -41,7 +41,7 @@
                                     <td><?=htmlspecialchars($dados->salario)?></td>
                                     <td><?=htmlspecialchars($dados->email)?></td>
                                     <td><?=htmlspecialchars($dados->telefone)?></td>
-                                    <td><?=htmlspecialchars($dados->data_admissao ?? $dados->dataAdmissao ?? '')?></td>
+                                    <td><?= ($dados->data_admissao ?? $dados->dataAdmissao) ? date('d/m/Y', strtotime($dados->data_admissao ?? $dados->dataAdmissao)) : '' ?></td>
                                     <td><?=($dados->ativo == 1) ? 'Sim' : 'Não'?></td>
                                     <td>
                                         <a href="funcionario/index/<?=$dados->id_funcionario?>" class="btn btn-success"><i class="fas fa-edit"></i></a>

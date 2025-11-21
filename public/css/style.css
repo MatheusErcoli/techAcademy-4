@@ -96,6 +96,28 @@ body.login-lock {
     outline: none;
 }
 
+
+.parsley-errors-list {
+    color: #dc3545;
+    list-style: none;
+    margin-top: 0.25rem;
+    font-size: 0.9rem;
+    padding-left: 0;
+}
+
+
+#erro,
+#erro .parsley-errors-list,
+#erro .parsley-errors-list li {
+    color: #dc3545 !important;
+}
+
+
+#erro .parsley-errors-list {
+    display: block !important;
+    padding-left: 0 !important;
+    margin: 0.25rem 0 0 0 !important;
+}
 .btn-login {
     background: linear-gradient(135deg, var(--primary-purple), var(--dark-purple));
     border: none;
