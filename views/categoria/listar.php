@@ -28,7 +28,14 @@
                     <?php
                         $dadosCategoria = $this->categoria->listar();
                         foreach($dadosCategoria as $dados){
-                            if($dados->ativo === 'S' || $dados->ativo == 1 || $dados->ativo){
+                            // Normalizar valores antigos 'S'/'N' para 1/0
+                            if (isset($dados->ativo) && $dados->ativo === 'S') {
+                                $dados->ativo = 1;
+                            } else if (isset($dados->ativo) && $dados->ativo === 'N') {
+                                $dados->ativo = 0;
+                            }
+
+                            if ($dados->ativo == 1 || $dados->ativo === true) {
                                 $dados->ativo = 'Sim';
                             } else {
                                 $dados->ativo = 'Não';

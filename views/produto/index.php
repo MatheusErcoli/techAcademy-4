@@ -20,19 +20,19 @@ $id_marca = $dados->id_marca ?? null;
 
 $valor = number_format($valor, 2, ',', '.');
 
-// Normalizar/compatibilizar valores para os selects (aceitar 'S'/'N' ou 1/0 vindo do DB)
-if ($destaque === 'S' || $destaque === '1' || $destaque === 1) {
-    $destaqueOption = 'S';
+
+if ($destaque === 'S' || $destaque === '1' || $destaque === 1 || $destaque === true) {
+    $destaqueOption = '1';
 } else if ($destaque === 'N' || $destaque === '0' || $destaque === 0) {
-    $destaqueOption = 'N';
+    $destaqueOption = '0';
 } else {
     $destaqueOption = ($destaque === null) ? '' : (string)$destaque;
 }
 
-if ($ativo === 'S' || $ativo === '1' || $ativo === 1) {
-    $ativoOption = 'S';
+if ($ativo === 'S' || $ativo === '1' || $ativo === 1 || $ativo === true) {
+    $ativoOption = '1';
 } else if ($ativo === 'N' || $ativo === '0' || $ativo === 0) {
-    $ativoOption = 'N';
+    $ativoOption = '0';
 } else {
     $ativoOption = ($ativo === null) ? '' : (string)$ativo;
 }
@@ -132,8 +132,8 @@ if ($ativo === 'S' || $ativo === '1' || $ativo === 1) {
                         <label for="destaque">Destaque:</label>
                         <select name="destaque" id="destaque" required class="form-control" data-parsley-required-message="Selecione">
                             <option value=""></option>
-                            <option value="S">Sim</option>
-                            <option value="N">Não</option>
+                            <option value="1">Sim</option>
+                            <option value="0">Não</option>
                         </select>
                         <script>
                             $("#destaque").val("<?= $destaqueOption ?>");
@@ -143,8 +143,8 @@ if ($ativo === 'S' || $ativo === '1' || $ativo === 1) {
                         <label for="ativo">Ativo:</label>
                         <select name="ativo" id="ativo" required class="form-control" data-parsley-required-message="Selecione">
                             <option value=""></option>
-                            <option value="S">Sim</option>
-                            <option value="N">Não</option>
+                            <option value="1">Sim</option>
+                            <option value="0">Não</option>
                         </select>
                         <script>
                             $("#ativo").val("<?= $ativoOption ?>");

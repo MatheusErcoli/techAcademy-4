@@ -12,7 +12,7 @@
     try {
         if (!empty($categoria)) {
             // todos os produtos de uma categoria
-            $sql = "select * from produto where ativo IN ('S','1',1) AND id_categoria = :categoria order by nome";
+            $sql = "select * from produto where ativo = 1 AND id_categoria = :categoria order by nome";
             $consulta = $pdo->prepare($sql);
             $consulta->bindParam(":categoria", $categoria);
             $consulta->execute();
@@ -20,7 +20,7 @@
             $dadosProduto = $consulta->fetchAll(PDO::FETCH_ASSOC);
         } else if (!empty($id)) {
             // um determinado produto
-            $sql = "select * from produto where ativo IN ('S','1',1) AND id_produto = :id limit 1";
+            $sql = "select * from produto where ativo = 1 AND id_produto = :id limit 1";
             $consulta = $pdo->prepare($sql);
             $consulta->bindParam(":id", $id);
             $consulta->execute();
@@ -28,7 +28,7 @@
             $dadosProduto = $consulta->fetch(PDO::FETCH_ASSOC);
         } else {
             // todos os produtos
-            $sql = "select * from produto where ativo IN ('S','1',1) order by nome";
+            $sql = "select * from produto where ativo = 1 order by nome";
             $consulta = $pdo->prepare($sql);
             $consulta->execute();
 

@@ -7,7 +7,7 @@
     $pdo = $db->conectar();
 
     try {
-        $sql = "select * from funcionario where ativo IN ('S','1',1) order by nome";
+        $sql = "select * from funcionario where ativo = 1 order by nome";
         $consulta = $pdo->prepare($sql);
         $consulta->execute();
 

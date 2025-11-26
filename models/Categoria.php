@@ -12,7 +12,7 @@ class Categoria
         // normalizar o valor de 'ativo' para inteiro (S/N -> 1/0)
         $ativo = 0;
         if (isset($dados['ativo'])) {
-            $ativo = ($dados['ativo'] === 'S' || $dados['ativo'] === '1' || $dados['ativo'] === 1) ? 1 : 0;
+            $ativo = ($dados['ativo'] === '1' || $dados['ativo'] === 1) ? 1 : 0;
         }
 
         if(empty($dados['id_categoria'])){

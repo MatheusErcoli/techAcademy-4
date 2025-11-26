@@ -7,8 +7,8 @@
     $pdo = $db->conectar();
 
     try {
-        // aceitar tanto 'S'/'N' quanto 1/0 dependendo do esquema
-        $sql = "select * from categoria where ativo IN ('S', '1', 1) order by descricao";
+        // usar apenas 1/0 no filtro (apenas ativos)
+        $sql = "select * from categoria where ativo = 1 order by descricao";
         $consulta = $pdo->prepare($sql);
         $consulta->execute();
 
