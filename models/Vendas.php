@@ -83,12 +83,15 @@ class Vendas
         } else {
             $sql = "update itempedido set id_pedido = :id_pedido, id_produto = :id_produto, quantidade = :quantidade, preco_unitario = :preco_unitario where id_item = :id_item limit 1";
         }
+        $preco = $dados['preco_unitario'];
+        $preco = str_replace('.', '', $preco);
+        $preco = str_replace(',', '.', $preco);
 
         $consulta = $this->pdo->prepare($sql);
         $consulta->bindParam(":id_pedido", $dados['id_pedido']);
         $consulta->bindParam(":id_produto", $dados['id_produto']);
         $consulta->bindParam(":quantidade", $dados['quantidade']);
-        $consulta->bindParam(":preco_unitario", $dados['preco_unitario']);
+        $consulta->bindParam(":preco_unitario", $preco);
 
         if(!empty($dados['id_item'])){
             $consulta->bindParam(":id_item", $dados['id_item']);
